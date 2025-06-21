@@ -26,6 +26,9 @@ import Image from "next/image"
 import React, { useState } from "react"
 import SplitText from "@/components/ui/splittext"
 import GlareHover from "@/components/ui/glarehover"
+import TiltedCard from "@/components/TiltedCard"
+import BlurText from "@/components/BlurText"
+import ShinyText from "@/components/ShinyText"
 
 export default function Portfolio() {
   const [form, setForm] = useState({
@@ -176,7 +179,7 @@ export default function Portfolio() {
       about: {
         title: "About Me",
         paragraph1:
-          "ผมเป็นนักศึกษาComputer Science(วิทยาการคอมพิวเตอร์)ที่มุ่งมั่นและมีความหลงใหลในการสร้างโซลูชันที่เป็นนวัตกรรมและเทคโนโลยีใหม่ๆ ผมมีความรู้พื้นฐานและเคยทำ Project เกียวกับ Software Engineering, Data-Sci, Ux/Ui และ Computer Network",
+          "ผมเป็นนักศึกษา Computer Science(วิทยาการคอมพิวเตอร์)ที่มุ่งมั่นและมีความหลงใหลในการสร้างโซลูชันที่เป็นนวัตกรรมและเทคโนโลยีใหม่ๆ ผมมีความรู้พื้นฐานและเคยทำ Project เกียวกับ Software Engineering, Data-Sci, Ux/Ui และ Computer Network",
         paragraph2:
           "ผมยินดีให้คำปรึกษาสำหรับเจ้าของธุรกิจหรือผู้ที่กำลังมองหาเว็บไซต์ที่ออกแบบและ Code ตามความต้องการของผู้ว่าจ้างและมีความปลอดภัย",
         paragraph3:
@@ -226,16 +229,16 @@ export default function Portfolio() {
             title: "Cinema app Design",
             description:
               "ออกแบบ User Interface, User experience เว็บจองตั๋วหนัง ผ่านโปรแกรม Figma และจัดทำ Design Systems สำหรับ Project",
-            demoLink: "",
-            githubLink: "https://www.figma.com/design/uO91DJpRpF0z7Pjx8O48du/Cinego_HCI?node-id=4-3&t=GlCUHG6OYUBBBwAy-1",
+            demoLink: "https://www.figma.com/design/uO91DJpRpF0z7Pjx8O48du/Cinego_HCI?node-id=4-3&t=GlCUHG6OYUBBBwAy-1",
+            githubLink: "",
           },
           {
             category: "UX/UI",
             title: "ออกแบบแอป Mobile app Task management สำหรับนักศึกษา",
             description:
               "ออกแบบที่ครอบคลุมสำหรับแอปพลิเคชันมือถือสำหรับการบริหารจัดการงานสำหรับนักศึกษา รวมถึง Wireframe Prototype และ User experience เน้นการเข้าถึงและประสบการณ์ผู้ใช้",
-            demoLink: "",
-            githubLink: "https://www.figma.com/design/wfzuTFtOB0qctoXelI3tNE/Education-app?node-id=1-2&t=PMs1K9jTSrI2B7yK-1",
+            demoLink: "https://www.figma.com/design/wfzuTFtOB0qctoXelI3tNE/Education-app?node-id=1-2&t=PMs1K9jTSrI2B7yK-1",
+            githubLink: "",
           },
           {
             category: "Web development",
@@ -357,6 +360,10 @@ export default function Portfolio() {
     }
   }
 
+  const handleAnimationComplete = () => {
+    console.log('Projects title animation completed!');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-orange-100">
       {/* Hero Section */}
@@ -419,8 +426,13 @@ export default function Portfolio() {
       {/* About Me Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
-            {t.about.title}
+          <h2 className="text-5xl font-bold text-center mb-5 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
+            <ShinyText 
+              text={t.about.title}
+              disabled={false}
+              speed={3}
+              className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent"
+            />
           </h2>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -456,76 +468,27 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
-            {t.projects.title}
+          <h2 className="text-5xl font-bold text-center mb-5 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
+            <ShinyText 
+              text={t.projects.title}
+              disabled={false}
+              speed={3}
+              className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent"
+            />
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 rounded-md">
             {t.projects.items.map((project, index) => (
-              <Card
+              <TiltedCard
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm hover:bg-white"
-              >
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                      {projects[index].icon}
-                    </div>
-                    <Badge variant="secondary" className="bg-orange-100 text-orange-700 hover:bg-orange-200">
-                      {project.category}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-orange-100 to-orange-200">
-                    <Image
-                      src={projects[index].image || "/placeholder.svg"}
-                      alt={project.title}
-                      width={300}
-                      height={200}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardDescription className="text-gray-600 leading-relaxed">{project.description}</CardDescription>
-                  <div className="flex flex-wrap gap-2">
-                    {projects[index].technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs border-orange-200 text-orange-700">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  {(project.demoLink !== "" || project.githubLink !== "") && 
-                  <div className="flex gap-2 pt-2">
-                  {
-                  project.demoLink !== "" && 
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 border-orange-200 text-orange-600 hover:bg-orange-50"
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    {t.projects.code}
-                  </Button>
-                  </a>
-                  }
-                    {project.githubLink !== "" &&
-                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                    <Button
-                      size="sm"
-                      className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      {t.projects.demo}
-                    </Button>
-                    </a>
-                    }
-                  </div>
-                  }
-                </CardContent>
-              </Card>
+                category={project.category}
+                title={project.title}
+                description={project.description}
+                technologies={projects[index].technologies}
+                image={projects[index].image}
+                demoLink={project.demoLink}
+                githubLink={project.githubLink}
+                icon={projects[index].icon}
+              />
             ))}
           </div>
         </div>
