@@ -109,7 +109,7 @@ export const websites: Website[] = [
     title: "Dental Clinic Website",
     description: "เว็บ clinick สำหรับธุรกิจความงามและสุขภาพ",
     technologies: ["Figma", "Framer"],
-    image: "/images/websites/thumbnail/dentalclinic_thumbnail.png",
+    image: "/images/websites/thumbnail/Dentalclinic_thumbnail.png",
     demoUrl: "/demos/task-manager/index.html",
     category: category.LandingPage,
     featured: false,
