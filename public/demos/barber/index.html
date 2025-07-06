@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SLICK STYLE - Bangkok's Premium Barber Shop</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#ff6b35", secondary: "#2c1810" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bebas+Neue&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      :root {
+        --primary: #ff6b35;
+        --secondary: #2c1810;
+        --text-light: #f8f5f2;
+        --text-dark: #2c1810;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        color: #333;
+        background-color: #f8f5f2;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Oswald", sans-serif;
+        font-weight: 600;
+      }
+      .bebas {
+        font-family: "Bebas Neue", sans-serif;
+      }
+      .oswald {
+        font-family: "Oswald", sans-serif;
+      }
+      .leather-texture {
+        background-image: url("https://readdy.ai/api/search-image?query=dark%20brown%20leather%20texture%2C%20high%20quality%2C%20realistic%2C%20detailed%2C%20seamless%20pattern%2C%20vintage%20style%2C%20rich%20texture%2C%20warm%20tones&width=800&height=800&seq=leather1&orientation=squarish");
+        background-size: cover;
+        background-position: center;
+      }
+      .wood-texture {
+        background-image: url("https://readdy.ai/api/search-image?query=dark%20wood%20grain%20texture%2C%20rich%20brown%2C%20detailed%2C%20realistic%2C%20vintage%2C%20natural%20pattern%2C%20warm%20tones%2C%20high%20quality%2C%20seamless&width=800&height=800&seq=wood1&orientation=squarish");
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-bg {
+        background-image: linear-gradient(
+            rgba(44, 24, 16, 0.85),
+            rgba(44, 24, 16, 0.85)
+          ),
+          url("https://readdy.ai/api/search-image?query=vintage%20barber%20shop%20interior%2C%20dark%20moody%20atmosphere%2C%20leather%20chairs%2C%20wooden%20details%2C%20professional%20setup%2C%20warm%20lighting%2C%20Bangkok%20style%2C%20premium%20quality%2C%20masculine%20aesthetic&width=1920&height=1080&seq=hero1&orientation=landscape");
+        background-size: cover;
+        background-position: center;
+      }
+      .service-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+      }
+      .product-card {
+        transition: transform 0.3s ease;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+      .gallery-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .gallery-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(44, 24, 16, 0.3);
+      }
+      .blog-card {
+        transition: transform 0.3s ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-5px);
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+      .carousel {
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .carousel::-webkit-scrollbar {
+        display: none;
+      }
+      .custom-checkbox {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        border-radius: 4px;
+      }
+      .custom-checkbox:hover input ~ .checkmark {
+        background-color: rgba(255, 107, 53, 0.1);
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+        background-color: var(--primary);
+      }
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+      }
+      .custom-checkbox .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .custom-radio {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .custom-radio input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .radio-mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+      }
+      .custom-radio:hover input ~ .radio-mark {
+        background-color: rgba(255, 107, 53, 0.1);
+      }
+      .custom-radio input:checked ~ .radio-mark {
+        background-color: transparent;
+      }
+      .radio-mark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      .custom-radio input:checked ~ .radio-mark:after {
+        display: block;
+      }
+      .custom-radio .radio-mark:after {
+        top: 3px;
+        left: 3px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: var(--primary);
+      }
+      input:focus + .slider {
+        box-shadow: 0 0 1px var(--primary);
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .before-after-slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      .before-after-slider .before,
+      .before-after-slider .after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
+      .before-after-slider .before {
+        z-index: 1;
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      }
+      .slider-handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 4px;
+        background: var(--primary);
+        z-index: 3;
+        cursor: ew-resize;
+      }
+      .slider-handle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        background: var(--primary);
+        border-radius: 50%;
+        border: 3px solid white;
+      }
+      .slider-label {
+        position: absolute;
+        bottom: 10px;
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        font-size: 12px;
+        z-index: 4;
+        border-radius: 3px;
+      }
+      .slider-label.before-label {
+        left: 10px;
+      }
+      .slider-label.after-label {
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-secondary shadow-lg">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          class="text-primary text-3xl font-bold oswald tracking-wider"
+          >SLICK STYLE</a
+        >
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#home"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >HOME</a
+          >
+          <a
+            href="#services"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >SERVICES</a
+          >
+          <a
+            href="#products"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >PRODUCTS</a
+          >
+          <a
+            href="#gallery"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >GALLERY</a
+          >
+          <a
+            href="#blog"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >BLOG</a
+          >
+          <a
+            href="#contact"
+            class="text-white bebas text-xl hover:text-primary transition-colors"
+            >CONTACT</a
+          >
+          <button
+            class="bg-primary text-white px-6 py-2 bebas text-xl !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap"
+          >
+            BOOK NOW
+          </button>
+        </div>
+        <button
+          id="menuBtn"
+          class="md:hidden w-10 h-10 flex items-center justify-center text-white"
+        >
+          <i class="ri-menu-line ri-2x"></i>
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div
+      id="mobileMenu"
+      class="fixed inset-0 z-50 wood-texture flex flex-col justify-center items-center transform translate-x-full transition-transform duration-300"
+    >
+      <button
+        id="closeMenuBtn"
+        class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-white"
+      >
+        <i class="ri-close-line ri-2x"></i>
+      </button>
+      <div class="flex flex-col items-center space-y-6">
+        <a
+          href="#home"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >HOME</a
+        >
+        <a
+          href="#services"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >SERVICES</a
+        >
+        <a
+          href="#products"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >PRODUCTS</a
+        >
+        <a
+          href="#gallery"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >GALLERY</a
+        >
+        <a
+          href="#blog"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >BLOG</a
+        >
+        <a
+          href="#contact"
+          class="text-white bebas text-3xl hover:text-primary transition-colors"
+          >CONTACT</a
+        >
+        <button
+          class="bg-primary text-white px-8 py-3 bebas text-2xl mt-6 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap"
+        >
+          BOOK NOW
+        </button>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-bg min-h-screen flex items-center pt-20 pb-16"
+    >
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1
+            class="text-primary text-7xl md:text-8xl oswald font-bold tracking-wider mb-4"
+          >
+            SLICK STYLE
+          </h1>
+          <p class="text-white text-2xl md:text-3xl bebas tracking-wide mb-8">
+            MASTER BARBERS • BANGKOK'S FINEST
+          </p>
+          <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+            Experience premium grooming services in the heart of Bangkok. Our
+            master barbers combine traditional techniques with modern style for
+            the discerning gentleman.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              class="bg-primary text-white px-8 py-3 oswald text-xl !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap"
+            >
+              BOOK APPOINTMENT
+            </button>
+            <button
+              class="bg-transparent border-2 border-white text-white px-8 py-3 oswald text-xl !rounded-button hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap"
+            >
+              OUR SERVICES
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-secondary text-5xl oswald font-bold mb-4">
+            PREMIUM SERVICES
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Experience the finest grooming services tailored for the modern
+            gentleman. Our master barbers combine traditional techniques with
+            contemporary style.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Service Card 1 -->
+          <div
+            class="service-card leather-texture rounded-lg overflow-hidden shadow-lg"
+          >
+            <div class="p-8 text-center">
+              <div
+                class="w-20 h-20 flex items-center justify-center mx-auto mb-6 bg-secondary rounded-full"
+              >
+                <i class="ri-scissors-line ri-2x text-primary"></i>
+              </div>
+              <h3 class="text-white text-2xl oswald font-bold mb-2">
+                CLASSIC CUT
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Precision haircut with expert styling and hot towel finish
+              </p>
+              <p class="text-primary text-3xl bebas mb-6">฿300</p>
+              <button
+                class="bg-white text-secondary px-6 py-2 oswald !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap"
+              >
+                SELECT
+              </button>
+            </div>
+          </div>
+          <!-- Service Card 2 (Highlighted) -->
+          <div
+            class="service-card bg-primary rounded-lg overflow-hidden shadow-xl transform scale-105"
+          >
+            <div class="p-8 text-center">
+              <div
+                class="w-20 h-20 flex items-center justify-center mx-auto mb-6 bg-white rounded-full"
+              >
+                <i class="ri-brush-line ri-2x text-primary"></i>
+              </div>
+              <h3 class="text-white text-2xl oswald font-bold mb-2">
+                BEARD STYLING
+              </h3>
+              <p class="text-white text-opacity-90 mb-4">
+                Expert beard shaping, trimming and conditioning treatment
+              </p>
+              <p class="text-white text-3xl bebas mb-6">฿250</p>
+              <button
+                class="bg-white text-primary px-6 py-2 oswald !rounded-button hover:bg-secondary hover:text-white transition-colors whitespace-nowrap"
+              >
+                SELECT
+              </button>
+            </div>
+          </div>
+          <!-- Service Card 3 -->
+          <div
+            class="service-card leather-texture rounded-lg overflow-hidden shadow-lg"
+          >
+            <div class="p-8 text-center">
+              <div
+                class="w-20 h-20 flex items-center justify-center mx-auto mb-6 bg-secondary rounded-full"
+              >
+                <i class="ri-knife-line ri-2x text-primary"></i>
+              </div>
+              <h3 class="text-white text-2xl oswald font-bold mb-2">
+                HOT TOWEL SHAVE
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Traditional straight razor shave with hot towel treatment
+              </p>
+              <p class="text-primary text-3xl bebas mb-6">฿400</p>
+              <button
+                class="bg-white text-secondary px-6 py-2 oswald !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap"
+              >
+                SELECT
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <button
+            class="bg-secondary text-white px-8 py-3 oswald text-xl !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+          >
+            VIEW ALL SERVICES
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Products Section -->
+    <section id="products" class="py-20 wood-texture">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-white text-5xl oswald font-bold mb-4">
+            PREMIUM PRODUCTS
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            We use and sell only the finest grooming products to keep you
+            looking your best between visits.
+          </p>
+        </div>
+        <div class="relative">
+          <button
+            id="prevBtn"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white shadow-lg"
+          >
+            <i class="ri-arrow-left-s-line ri-2x"></i>
+          </button>
+          <div
+            id="productCarousel"
+            class="carousel flex overflow-x-auto gap-6 py-4 px-2"
+          >
+            <!-- Product Card 1 -->
+            <div
+              class="product-card flex-shrink-0 w-64 bg-white rounded-lg overflow-hidden shadow-lg"
+            >
+              <div class="h-48 bg-gray-200">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%20hair%20pomade%20product%20in%20vintage%20glass%20jar%2C%20professional%20photography%2C%20high-end%20product%20shot%2C%20warm%20lighting%2C%20dark%20background%2C%20masculine%20styling%20product&width=400&height=300&seq=product1&orientation=landscape"
+                  class="w-full h-full object-cover object-top"
+                  alt="Hair Pomade"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                  SLICK STYLE POMADE
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  Strong hold with natural shine for classic styles
+                </p>
+                <div class="flex justify-between items-center">
+                  <p class="text-primary text-xl bebas">฿450</p>
+                  <button
+                    class="bg-secondary text-white px-4 py-2 oswald text-sm !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 2 -->
+            <div
+              class="product-card flex-shrink-0 w-64 bg-white rounded-lg overflow-hidden shadow-lg"
+            >
+              <div class="h-48 bg-gray-200">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%20beard%20oil%20in%20amber%20glass%20bottle%20with%20dropper%2C%20professional%20product%20photography%2C%20high-end%2C%20warm%20lighting%2C%20dark%20background%2C%20masculine%20grooming%20product&width=400&height=300&seq=product2&orientation=landscape"
+                  class="w-full h-full object-cover object-top"
+                  alt="Beard Oil"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                  BEARD ELIXIR
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  Nourishing oil blend for soft, manageable beard
+                </p>
+                <div class="flex justify-between items-center">
+                  <p class="text-primary text-xl bebas">฿380</p>
+                  <button
+                    class="bg-secondary text-white px-4 py-2 oswald text-sm !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div
+              class="product-card flex-shrink-0 w-64 bg-white rounded-lg overflow-hidden shadow-lg"
+            >
+              <div class="h-48 bg-gray-200">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%20styling%20clay%20hair%20product%20in%20matte%20black%20container%2C%20professional%20product%20photography%2C%20high-end%2C%20warm%20lighting%2C%20dark%20background%2C%20masculine%20styling%20product&width=400&height=300&seq=product3&orientation=landscape"
+                  class="w-full h-full object-cover object-top"
+                  alt="Styling Clay"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                  MATTE CLAY
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  Medium hold with matte finish for textured styles
+                </p>
+                <div class="flex justify-between items-center">
+                  <p class="text-primary text-xl bebas">฿420</p>
+                  <button
+                    class="bg-secondary text-white px-4 py-2 oswald text-sm !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 4 -->
+            <div
+              class="product-card flex-shrink-0 w-64 bg-white rounded-lg overflow-hidden shadow-lg"
+            >
+              <div class="h-48 bg-gray-200">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%20beard%20balm%20in%20vintage%20tin%20container%2C%20professional%20product%20photography%2C%20high-end%2C%20warm%20lighting%2C%20dark%20background%2C%20masculine%20grooming%20product&width=400&height=300&seq=product4&orientation=landscape"
+                  class="w-full h-full object-cover object-top"
+                  alt="Beard Balm"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                  BEARD BALM
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  Conditioning balm for styling and taming beard
+                </p>
+                <div class="flex justify-between items-center">
+                  <p class="text-primary text-xl bebas">฿400</p>
+                  <button
+                    class="bg-secondary text-white px-4 py-2 oswald text-sm !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 5 -->
+            <div
+              class="product-card flex-shrink-0 w-64 bg-white rounded-lg overflow-hidden shadow-lg"
+            >
+              <div class="h-48 bg-gray-200">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%20wooden%20beard%20comb%20with%20leather%20case%2C%20professional%20product%20photography%2C%20high-end%2C%20warm%20lighting%2C%20dark%20background%2C%20masculine%20grooming%20tool&width=400&height=300&seq=product5&orientation=landscape"
+                  class="w-full h-full object-cover object-top"
+                  alt="Beard Comb"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                  SANDALWOOD COMB
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  Hand-crafted wooden comb with leather case
+                </p>
+                <div class="flex justify-between items-center">
+                  <p class="text-primary text-xl bebas">฿350</p>
+                  <button
+                    class="bg-secondary text-white px-4 py-2 oswald text-sm !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            id="nextBtn"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white shadow-lg"
+          >
+            <i class="ri-arrow-right-s-line ri-2x"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-primary">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-white text-5xl oswald font-bold mb-4">
+            TRANSFORMATION GALLERY
+          </h2>
+          <p class="text-white text-opacity-90 max-w-2xl mx-auto">
+            See the remarkable transformations our master barbers create. Slide
+            to reveal the before and after.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Gallery Card 1 -->
+          <div
+            class="gallery-card bg-white p-4 rounded-lg shadow-lg transform rotate-1"
+          >
+            <div class="before-after-slider h-80 mb-4 rounded overflow-hidden">
+              <div
+                class="before"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=man%20with%20messy%20long%20hair%20and%20unkempt%20beard%2C%20needs%20haircut%2C%20before%20photo%2C%20realistic%2C%20portrait%20photography&width=400&height=500&seq=before1&orientation=portrait');
+                "
+              ></div>
+              <div
+                class="after"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=handsome%20man%20with%20stylish%20short%20haircut%20and%20well-groomed%20beard%2C%20after%20barber%20visit%2C%20confident%2C%20professional%20portrait%20photography&width=400&height=500&seq=after1&orientation=portrait');
+                "
+              ></div>
+              <div class="slider-handle"></div>
+              <div class="slider-label before-label">BEFORE</div>
+              <div class="slider-label after-label">AFTER</div>
+            </div>
+            <h3 class="text-secondary text-xl oswald font-bold">
+              EXECUTIVE STYLE
+            </h3>
+            <p class="text-gray-600 text-sm">Classic cut with beard styling</p>
+          </div>
+          <!-- Gallery Card 2 -->
+          <div
+            class="gallery-card bg-white p-4 rounded-lg shadow-lg transform -rotate-1"
+          >
+            <div class="before-after-slider h-80 mb-4 rounded overflow-hidden">
+              <div
+                class="before"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=young%20asian%20man%20with%20overgrown%20hair%20and%20patchy%20facial%20hair%2C%20needs%20grooming%2C%20before%20photo%2C%20realistic%2C%20portrait%20photography&width=400&height=500&seq=before2&orientation=portrait');
+                "
+              ></div>
+              <div
+                class="after"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=handsome%20young%20asian%20man%20with%20modern%20fade%20haircut%20and%20clean%20shaven%20face%2C%20after%20barber%20visit%2C%20confident%2C%20professional%20portrait%20photography&width=400&height=500&seq=after2&orientation=portrait');
+                "
+              ></div>
+              <div class="slider-handle"></div>
+              <div class="slider-label before-label">BEFORE</div>
+              <div class="slider-label after-label">AFTER</div>
+            </div>
+            <h3 class="text-secondary text-xl oswald font-bold">MODERN FADE</h3>
+            <p class="text-gray-600 text-sm">
+              Contemporary cut with clean shave
+            </p>
+          </div>
+          <!-- Gallery Card 3 -->
+          <div
+            class="gallery-card bg-white p-4 rounded-lg shadow-lg transform rotate-1"
+          >
+            <div class="before-after-slider h-80 mb-4 rounded overflow-hidden">
+              <div
+                class="before"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=middle-aged%20man%20with%20wild%20gray%20beard%20and%20messy%20hair%2C%20needs%20grooming%2C%20before%20photo%2C%20realistic%2C%20portrait%20photography&width=400&height=500&seq=before3&orientation=portrait');
+                "
+              ></div>
+              <div
+                class="after"
+                style="
+                  background-image: url('https://readdy.ai/api/search-image?query=distinguished%20middle-aged%20man%20with%20stylish%20gray%20beard%20trim%20and%20neat%20haircut%2C%20after%20barber%20visit%2C%20confident%2C%20professional%20portrait%20photography&width=400&height=500&seq=after3&orientation=portrait');
+                "
+              ></div>
+              <div class="slider-handle"></div>
+              <div class="slider-label before-label">BEFORE</div>
+              <div class="slider-label after-label">AFTER</div>
+            </div>
+            <h3 class="text-secondary text-xl oswald font-bold">
+              DISTINGUISHED GENTLEMAN
+            </h3>
+            <p class="text-gray-600 text-sm">Refined cut with beard styling</p>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <button
+            class="bg-white text-primary px-8 py-3 oswald text-xl !rounded-button hover:bg-secondary hover:text-white transition-colors whitespace-nowrap"
+          >
+            VIEW FULL GALLERY
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-secondary text-5xl oswald font-bold mb-4">
+            GROOMING TIPS
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Expert advice to keep you looking your best between visits.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Blog Card 1 -->
+          <div class="blog-card bg-white rounded-lg overflow-hidden shadow-lg">
+            <div class="h-48 bg-gray-200">
+              <img
+                src="https://readdy.ai/api/search-image?query=man%20applying%20beard%20oil%2C%20close-up%20of%20hands%20and%20beard%2C%20warm%20lighting%2C%20premium%20grooming%20product%2C%20masculine%20aesthetic&width=600&height=400&seq=blog1&orientation=landscape"
+                class="w-full h-full object-cover object-top"
+                alt="Beard Care"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-primary text-sm bebas mb-2">JULY 1, 2025</p>
+              <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                5 ESSENTIAL BEARD CARE TIPS
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Learn how to keep your beard looking its best with these expert
+                tips from our master barbers.
+              </p>
+              <a href="#" class="text-primary oswald inline-flex items-center">
+                READ MORE
+                <i class="ri-arrow-right-line ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Blog Card 2 -->
+          <div class="blog-card bg-white rounded-lg overflow-hidden shadow-lg">
+            <div class="h-48 bg-gray-200">
+              <img
+                src="https://readdy.ai/api/search-image?query=man%20styling%20hair%20with%20pomade%2C%20close-up%20of%20hands%20in%20hair%2C%20warm%20lighting%2C%20premium%20grooming%20product%2C%20masculine%20aesthetic&width=600&height=400&seq=blog2&orientation=landscape"
+                class="w-full h-full object-cover object-top"
+                alt="Hair Styling"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-primary text-sm bebas mb-2">JUNE 25, 2025</p>
+              <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                CHOOSING THE RIGHT STYLING PRODUCT
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Pomade, clay, or wax? Understand which product is best for your
+                hair type and desired style.
+              </p>
+              <a href="#" class="text-primary oswald inline-flex items-center">
+                READ MORE
+                <i class="ri-arrow-right-line ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Blog Card 3 -->
+          <div class="blog-card bg-white rounded-lg overflow-hidden shadow-lg">
+            <div class="h-48 bg-gray-200">
+              <img
+                src="https://readdy.ai/api/search-image?query=elegant%20shaving%20tools%20arrangement%20on%20wooden%20surface%2C%20vintage%20straight%20razor%20with%20leather%20strop%2C%20shaving%20brush%2C%20and%20premium%20shaving%20cream%2C%20soft%20warm%20lighting%2C%20luxury%20grooming%20setup%2C%20no%20blood%20or%20sharp%20edges%20visible&width=600&height=400&seq=blog3&orientation=landscape"
+                class="w-full h-full object-cover object-top"
+                alt="Straight Razor"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-primary text-sm bebas mb-2">JUNE 18, 2025</p>
+              <h3 class="text-secondary text-xl oswald font-bold mb-2">
+                THE ART OF THE STRAIGHT RAZOR SHAVE
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Discover the traditional technique and benefits of the classic
+                straight razor shave.
+              </p>
+              <a href="#" class="text-primary oswald inline-flex items-center">
+                READ MORE
+                <i class="ri-arrow-right-line ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <button
+            class="bg-secondary text-white px-8 py-3 oswald text-xl !rounded-button hover:bg-primary transition-colors whitespace-nowrap"
+          >
+            VIEW ALL ARTICLES
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 leather-texture">
+      <div class="container mx-auto px-4">
+        <div
+          class="max-w-6xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-8 md:p-12">
+              <h2 class="text-secondary text-4xl oswald font-bold mb-6">
+                CONTACT US
+              </h2>
+              <p class="text-gray-600 mb-8">
+                Visit our premium barber shop in the heart of Bangkok or book
+                your appointment online.
+              </p>
+              <div class="mb-8">
+                <div class="flex items-start mb-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center mr-4 bg-primary rounded-full text-white"
+                  >
+                    <i class="ri-map-pin-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-secondary text-lg oswald font-bold mb-1">
+                      LOCATION
+                    </h3>
+                    <p class="text-gray-600">
+                      123 Sukhumvit Road, Thonglor<br />Bangkok 10110, Thailand
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start mb-4">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center mr-4 bg-primary rounded-full text-white"
+                  >
+                    <i class="ri-time-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-secondary text-lg oswald font-bold mb-1">
+                      HOURS
+                    </h3>
+                    <p class="text-gray-600">
+                      Monday - Sunday: 9:00 AM - 9:00 PM
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center mr-4 bg-primary rounded-full text-white"
+                  >
+                    <i class="ri-phone-line"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-secondary text-lg oswald font-bold mb-1">
+                      CONTACT
+                    </h3>
+                    <p class="text-gray-600">
+                      +66 2 123 4567<br />info@slickstyle.com
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-secondary rounded-full text-white hover:bg-primary transition-colors"
+                >
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-secondary rounded-full text-white hover:bg-primary transition-colors"
+                >
+                  <i class="ri-facebook-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-secondary rounded-full text-white hover:bg-primary transition-colors"
+                >
+                  <i class="ri-line-line"></i>
+                </a>
+              </div>
+            </div>
+            <div class="bg-secondary p-8 md:p-12 text-white">
+              <h2 class="text-primary text-4xl oswald font-bold mb-6">
+                BOOK APPOINTMENT
+              </h2>
+              <p class="text-gray-300 mb-8">
+                Reserve your spot with our master barbers. Same-day appointments
+                available.
+              </p>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label class="block text-gray-300 mb-2 oswald">NAME</label>
+                    <input
+                      type="text"
+                      class="w-full bg-secondary border border-gray-600 rounded p-3 text-white focus:border-primary focus:outline-none"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-gray-300 mb-2 oswald">PHONE</label>
+                    <input
+                      type="tel"
+                      class="w-full bg-secondary border border-gray-600 rounded p-3 text-white focus:border-primary focus:outline-none"
+                      placeholder="Your phone"
+                    />
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-300 mb-2 oswald"
+                    >DATE & TIME</label
+                  >
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                      type="date"
+                      class="w-full bg-secondary border border-gray-600 rounded p-3 text-white focus:border-primary focus:outline-none"
+                    />
+                    <input
+                      type="time"
+                      class="w-full bg-secondary border border-gray-600 rounded p-3 text-white focus:border-primary focus:outline-none"
+                    />
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label class="block text-gray-300 mb-2 oswald">SERVICE</label>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="custom-radio flex items-center">
+                      <input type="radio" name="service" checked />
+                      <span class="radio-mark"></span>
+                      <span class="ml-2">Classic Cut (฿300)</span>
+                    </label>
+                    <label class="custom-radio flex items-center">
+                      <input type="radio" name="service" />
+                      <span class="radio-mark"></span>
+                      <span class="ml-2">Beard Styling (฿250)</span>
+                    </label>
+                    <label class="custom-radio flex items-center">
+                      <input type="radio" name="service" />
+                      <span class="radio-mark"></span>
+                      <span class="ml-2">Hot Towel Shave (฿400)</span>
+                    </label>
+                    <label class="custom-radio flex items-center">
+                      <input type="radio" name="service" />
+                      <span class="radio-mark"></span>
+                      <span class="ml-2">Full Service (฿850)</span>
+                    </label>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white px-6 py-3 oswald text-xl !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap"
+                >
+                  BOOK NOW
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-secondary py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-primary text-2xl oswald font-bold mb-4">
+              SLICK STYLE
+            </h3>
+            <p class="text-gray-400 mb-4">
+              Bangkok's premium barber shop providing expert grooming services
+              for the modern gentleman.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-primary">
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary">
+                <i class="ri-facebook-line ri-lg"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary">
+                <i class="ri-line-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-white text-lg oswald font-bold mb-4">SERVICES</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-primary">Classic Cut</a></li>
+              <li><a href="#" class="hover:text-primary">Beard Styling</a></li>
+              <li>
+                <a href="#" class="hover:text-primary">Hot Towel Shave</a>
+              </li>
+              <li><a href="#" class="hover:text-primary">Hair Coloring</a></li>
+              <li>
+                <a href="#" class="hover:text-primary">Facial Treatment</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white text-lg oswald font-bold mb-4">HOURS</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>Monday: 9:00 AM - 9:00 PM</li>
+              <li>Tuesday: 9:00 AM - 9:00 PM</li>
+              <li>Wednesday: 9:00 AM - 9:00 PM</li>
+              <li>Thursday: 9:00 AM - 9:00 PM</li>
+              <li>Friday: 9:00 AM - 9:00 PM</li>
+              <li>Saturday: 9:00 AM - 9:00 PM</li>
+              <li>Sunday: 9:00 AM - 9:00 PM</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white text-lg oswald font-bold mb-4">CONTACT</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-start">
+                <i class="ri-map-pin-line mr-2 mt-1"></i>
+                <span
+                  >123 Sukhumvit Road, Thonglor<br />Bangkok 10110,
+                  Thailand</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i class="ri-phone-line mr-2"></i>
+                <span>+66 2 123 4567</span>
+              </li>
+              <li class="flex items-center">
+                <i class="ri-mail-line mr-2"></i>
+                <span>info@slickstyle.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500"
+        >
+          <p>&copy; 2025 SLICK STYLE. All rights reserved.</p>
+          <div class="flex justify-center mt-4 space-x-4">
+            <i class="ri-visa-line ri-lg"></i>
+            <i class="ri-mastercard-line ri-lg"></i>
+            <i class="ri-paypal-line ri-lg"></i>
+            <i class="ri-alipay-line ri-lg"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Booking Modal -->
+    <div
+      id="bookingModal"
+      class="fixed inset-0 z-50 flex items-center justify-center hidden"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div class="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <button
+          id="closeModalBtn"
+          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          <i class="ri-close-line ri-lg"></i>
+        </button>
+        <div class="p-6">
+          <h2 class="text-secondary text-2xl oswald font-bold mb-4">
+            BOOK APPOINTMENT
+          </h2>
+          <form>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2 oswald">NAME</label>
+              <input
+                type="text"
+                class="w-full border border-gray-300 rounded p-3 focus:border-primary focus:outline-none"
+                placeholder="Your name"
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2 oswald">PHONE</label>
+              <input
+                type="tel"
+                class="w-full border border-gray-300 rounded p-3 focus:border-primary focus:outline-none"
+                placeholder="Your phone"
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2 oswald">DATE</label>
+              <input
+                type="date"
+                class="w-full border border-gray-300 rounded p-3 focus:border-primary focus:outline-none"
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2 oswald">TIME</label>
+              <input
+                type="time"
+                class="w-full border border-gray-300 rounded p-3 focus:border-primary focus:outline-none"
+              />
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 mb-2 oswald">SERVICE</label>
+              <select
+                class="w-full border border-gray-300 rounded p-3 pr-8 focus:border-primary focus:outline-none appearance-none bg-white"
+              >
+                <option>Classic Cut (฿300)</option>
+                <option>Beard Styling (฿250)</option>
+                <option>Hot Towel Shave (฿400)</option>
+                <option>Full Service (฿850)</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-primary text-white px-6 py-3 oswald !rounded-button hover:bg-secondary transition-colors whitespace-nowrap"
+            >
+              CONFIRM BOOKING
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Floating Button -->
+    <div class="md:hidden fixed bottom-6 right-6 z-40">
+      <button
+        id="mobileBookBtn"
+        class="bg-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center"
+      >
+        <i class="ri-calendar-line ri-lg"></i>
+      </button>
+    </div>
+    <script id="navigationScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.remove("translate-x-full");
+          mobileMenu.classList.add("translate-x-0");
+        });
+        closeMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.remove("translate-x-0");
+          mobileMenu.classList.add("translate-x-full");
+        });
+        // Close menu when clicking on menu items
+        const menuLinks = mobileMenu.querySelectorAll("a");
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("translate-x-0");
+            mobileMenu.classList.add("translate-x-full");
+          });
+        });
+      });
+    </script>
+    <script id="carouselScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("productCarousel");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const cardWidth = 280; // Width of card + gap
+        prevBtn.addEventListener("click", function () {
+          carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+        });
+        nextBtn.addEventListener("click", function () {
+          carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+        });
+      });
+    </script>
+    <script id="beforeAfterSliderScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const sliders = document.querySelectorAll(".before-after-slider");
+        sliders.forEach((slider) => {
+          const handle = slider.querySelector(".slider-handle");
+          const beforeDiv = slider.querySelector(".before");
+          let isDragging = false;
+          const updateClip = (x) => {
+            const sliderWidth = slider.offsetWidth;
+            const percentage = (x / sliderWidth) * 100;
+            const clampedPercentage = Math.min(Math.max(percentage, 0), 100);
+            beforeDiv.style.clipPath = `polygon(0 0, ${clampedPercentage}% 0, ${clampedPercentage}% 100%, 0 100%)`;
+            handle.style.left = `${clampedPercentage}%`;
+          };
+          const startDrag = (e) => {
+            isDragging = true;
+            slider.style.cursor = "ew-resize";
+            e.preventDefault();
+          };
+          const endDrag = () => {
+            isDragging = false;
+            slider.style.cursor = "default";
+          };
+          const drag = (e) => {
+            if (!isDragging) return;
+            const rect = slider.getBoundingClientRect();
+            const x =
+              e.type === "mousemove"
+                ? e.clientX - rect.left
+                : e.touches[0].clientX - rect.left;
+            updateClip(x);
+          };
+          handle.addEventListener("mousedown", startDrag);
+          handle.addEventListener("touchstart", startDrag);
+          document.addEventListener("mouseup", endDrag);
+          document.addEventListener("touchend", endDrag);
+          document.addEventListener("mousemove", drag);
+          document.addEventListener("touchmove", drag);
+          // Initial position
+          updateClip(slider.offsetWidth * 0.5);
+        });
+      });
+    </script>
+    <script id="modalScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const bookingModal = document.getElementById("bookingModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const mobileBookBtn = document.getElementById("mobileBookBtn");
+        const bookBtns = document.querySelectorAll(
+          "button:not(#closeModalBtn):not(#menuBtn):not(#closeMenuBtn):not(#prevBtn):not(#nextBtn):not(#mobileBookBtn)"
+        );
+        const openModal = () => {
+          bookingModal.classList.remove("hidden");
+        };
+        const closeModal = () => {
+          bookingModal.classList.add("hidden");
+        };
+        bookBtns.forEach((btn) => {
+          if (
+            btn.textContent.includes("BOOK") ||
+            btn.textContent.includes("APPOINTMENT")
+          ) {
+            btn.addEventListener("click", openModal);
+          }
+        });
+        mobileBookBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+        // Close modal when clicking outside
+        bookingModal.addEventListener("click", function (e) {
+          if (e.target === bookingModal) {
+            closeModal();
+          }
+        });
+      });
+    </script>
+    <script id="smoothScrollScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const navHeight = document.querySelector("nav").offsetHeight;
+              const targetPosition =
+                targetElement.getBoundingClientRect().top +
+                window.pageYOffset -
+                navHeight;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

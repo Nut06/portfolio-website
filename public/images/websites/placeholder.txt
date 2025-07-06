@@ -1,0 +1,11 @@
+This folder contains website preview images.
+
+Placeholder images for:
+- ecommerce-store.png
+- restaurant-landing.png  
+- dashboard-admin.png
+- portfolio-website.png
+- blog-platform.png
+- task-manager.png
+
+You can replace these with actual website screenshots. 

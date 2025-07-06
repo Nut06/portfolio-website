@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo Buy Platform Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pink: {
+                50: "#fdf2f8",
+                100: "#fce7f3",
+                500: "#ec4899",
+                600: "#db2777",
+              },
+              purple: {
+                50: "#faf5ff",
+                100: "#f3e8ff",
+                500: "#a855f7",
+                600: "#9333ea",
+              },
+              blue: {
+                50: "#eff6ff",
+                100: "#dbeafe",
+                500: "#3b82f6",
+                600: "#2563eb",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .page-card {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-card:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+          0 10px 10px -5px rgba(0, 0, 0, 0.08);
+        transform: scale(1.02);
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.6s ease-out;
+      }
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .shiny-text {
+        background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6, #ec4899);
+        background-size: 300% 300%;
+        animation: shimmer 3s ease-in-out infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      @keyframes shimmer {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+      .text-shadow-sm {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Popup Modal Styles */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .popup-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .popup-card {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        max-width: 90vw;
+        max-height: 90vh;
+        margin: auto;
+        position: relative;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+        overflow: hidden;
+      }
+
+      .popup-overlay.active .popup-card {
+        transform: scale(1);
+      }
+
+      .popup-image {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        object-fit: contain;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .popup-content {
+        padding: 2rem;
+      }
+
+      .popup-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .popup-description {
+        color: #6b7280;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .popup-technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .popup-tech-badge {
+        padding: 0.25rem 0.75rem;
+        background: linear-gradient(135deg, #ec4899, #a855f7);
+        color: white;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .popup-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: #6b7280;
+        transition: all 0.2s ease;
+        z-index: 10;
+      }
+
+      .popup-close:hover {
+        background: rgba(255, 255, 255, 1);
+        color: #1f2937;
+        transform: scale(1.1);
+      }
+
+      /* Responsive Grid System */
+      @media (max-width: 768px) {
+        .masonry-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+        }
+        .popup-card {
+          max-width: 95vw;
+          margin: 1rem;
+        }
+        .popup-content {
+          padding: 1.5rem;
+        }
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .masonry-grid {
+          grid-template-columns: repeat(8, 1fr);
+          gap: 1.25rem;
+        }
+      }
+      @media (min-width: 1025px) {
+        .masonry-grid {
+          grid-template-columns: repeat(12, 1fr);
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen"
+  >
+    <!-- Echo Buy Platform Showcase -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <!-- Title -->
+        <h2 class="text-5xl font-bold text-center mb-16 shiny-text">
+          Echo Buy Platform (Ecommerce Website)
+        </h2>
+
+        <!-- Frontend Section -->
+        <div class="mb-20">
+          <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+            หน้าร้าน
+          </h3>
+          <div
+            id="frontend-container"
+            class="masonry-grid grid auto-rows-[200px]"
+          >
+            <!-- Frontend pages will be dynamically generated here -->
+          </div>
+        </div>
+
+        <!-- Admin Section -->
+        <div class="mb-20">
+          <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+            หลังร้าน
+          </h3>
+          <div id="admin-container" class="masonry-grid grid auto-rows-[200px]">
+            <!-- Admin pages will be dynamically generated here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popup Modal -->
+    <div id="popup-overlay" class="popup-overlay">
+      <div class="popup-card">
+        <button class="popup-close" onclick="closePopup()">×</button>
+        <img id="popup-image" class="popup-image" src="" alt="" />
+        <div class="popup-content">
+          <h3 id="popup-title" class="popup-title"></h3>
+          <p id="popup-description" class="popup-description"></p>
+          <div id="popup-technologies" class="popup-technologies"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm border-t border-pink-100 py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-gray-600">
+          &copy; 2024 Echo Buy Platform. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const platformData = {
+        title: "Echo Buy Platform (Ecommerce Website)",
+        categories: [
+          {
+            id: "frontend",
+            title: "หน้าร้าน (สำหรับลูกค้า)",
+            description: "ประสบการณ์การช็อปปิ้งที่สวยงามสำหรับลูกค้า",
+            gradient: "from-pink-400 via-purple-400 to-blue-400",
+            label: "frontend",
+            animationDelay: "0ms",
+            pages: [
+              {
+                id: "homepage",
+                title: "Homepage",
+                description: "หน้าแรกของร้านค้า",
+                letter: "H",
+                imagePath: "./images/homepage.png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+              {
+                id: "products",
+                title: "Products Catalog",
+                description: "หน้าแสดงสินค้าทั้งหมด",
+                letter: "P",
+                imagePath: "./images/productcat (2).png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+              {
+                id: "product-detail",
+                title: "Product Detail",
+                description: "หน้ารายละเอียดสินค้า",
+                letter: "D",
+                imagePath: "./images/product_detail.png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+              {
+                id: "cart",
+                title: "Shopping Cart",
+                description: "ตะกร้าสินค้า",
+                letter: "C",
+                imagePath: "./images/shopingcart.png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+              {
+                id: "checkout",
+                title: "Checkout Process",
+                description: "ขั้นตอนการชำระเงิน",
+                letter: "C",
+                imagePath: "./images/checkout_process.png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+              {
+                id: "login",
+                title: "Authentication",
+                description: "หน้าเข้าสู่ระบบ",
+                letter: "L",
+                imagePath: "./images/authen.png",
+                technologies: ["React", "TailwindCSS", "TypeScript"],
+              },
+            ],
+          },
+          {
+            id: "admin",
+            title: "หลังร้าน (สำหรับแอดมิน)",
+            description: "ระบบจัดการร้านค้าที่ครบถ้วน",
+            gradient: "from-blue-400 via-purple-400 to-indigo-400",
+            label: "admin",
+            animationDelay: "200ms",
+            pages: [
+              {
+                id: "orders",
+                title: "Orders Management",
+                description: "จัดการคำสั่งซื้อของร้าน",
+                letter: "O",
+                imagePath: "./images/order_manage.png",
+                technologies: ["React", "TailwindCSS", "TypeScript", "Node.js"],
+              },
+              {
+                id: "products-management",
+                title: "Products Management",
+                description: "จัดการสินค้าในร้าน",
+                letter: "P",
+                imagePath: "./images/productmanage.png",
+                technologies: ["React", "TailwindCSS", "TypeScript", "Node.js"],
+              },
+              {
+                id: "inventory",
+                title: "Inventory Management",
+                description: "จัดการสต็อกสินค้า",
+                letter: "I",
+                imagePath: "./images/inventory_manage.png",
+                technologies: ["React", "TailwindCSS", "TypeScript", "Node.js"],
+              },
+            ],
+          },
+        ],
+      };
+
+      // Grid positioning configuration for masonry layout
+      const gridPositions = {
+        frontend: {
+          homepage: "col-span-6 row-span-2",
+          products: "col-span-6 row-span-1",
+          "product-detail": "col-span-4 row-span-2",
+          cart: "col-span-4 row-span-1",
+          checkout: "col-span-4 row-span-1",
+          login: "col-span-4 row-span-1",
+        },
+        admin: {
+          orders: "col-span-6 row-span-2",
+          "products-management": "col-span-6 row-span-1",
+          inventory: "col-span-6 row-span-1",
+        },
+      };
+
+      // Function to create a page card with overlay layout
+      function createPageCard(page, categoryId) {
+        const gridPosition = gridPositions[categoryId][page.id];
+
+        return `
+          <div class="page-card animate-fade-in-up ${gridPosition} min-h-[200px]" onclick="openPopup('${
+          page.title
+        }', '${page.description}', '${page.imagePath}', ${JSON.stringify(
+          page.technologies
+        ).replace(/"/g, "&quot;")})">
+            <div class="absolute inset-0 w-full h-full">
+              <img src="${
+                page.imagePath
+              }" class="w-full h-full object-cover" alt="${page.title}">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <h3 class="text-lg font-semibold mb-1 text-shadow-sm">${
+                page.title
+              }</h3>
+              <p class="text-sm opacity-90 text-shadow-sm">${
+                page.description
+              }</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Function to render the entire showcase
+      function renderShowcase() {
+        // Render frontend section
+        const frontendContainer = document.getElementById("frontend-container");
+        const frontendCategory = platformData.categories.find(
+          (cat) => cat.id === "frontend"
+        );
+        const frontendHTML = frontendCategory.pages
+          .map((page) => createPageCard(page, "frontend"))
+          .join("");
+        frontendContainer.innerHTML = frontendHTML;
+
+        // Render admin section
+        const adminContainer = document.getElementById("admin-container");
+        const adminCategory = platformData.categories.find(
+          (cat) => cat.id === "admin"
+        );
+        const adminHTML = adminCategory.pages
+          .map((page) => createPageCard(page, "admin"))
+          .join("");
+        adminContainer.innerHTML = adminHTML;
+      }
+
+      // Popup functions
+      function openPopup(title, description, imagePath, technologies) {
+        const overlay = document.getElementById("popup-overlay");
+        const popupImage = document.getElementById("popup-image");
+        const popupTitle = document.getElementById("popup-title");
+        const popupDescription = document.getElementById("popup-description");
+        const popupTechnologies = document.getElementById("popup-technologies");
+
+        // Set popup content
+        popupImage.src = imagePath;
+        popupImage.alt = title;
+        popupTitle.textContent = title;
+        popupDescription.textContent = description;
+
+        // Create technology badges
+        popupTechnologies.innerHTML = technologies
+          .map((tech) => `<span class="popup-tech-badge">${tech}</span>`)
+          .join("");
+
+        // Show popup
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePopup() {
+        const overlay = document.getElementById("popup-overlay");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      // Close popup when clicking outside
+      document
+        .getElementById("popup-overlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closePopup();
+          }
+        });
+
+      // Close popup with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closePopup();
+        }
+      });
+
+      // Initialize the showcase when the page loads
+      document.addEventListener("DOMContentLoaded", renderShowcase);
+    </script>
+  </body>
+</html>

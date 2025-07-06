@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREW BANGKOK - Premium Thai Coffee Shop</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#5D4037", secondary: "#D2691E" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        color: #333;
+        background-color: #fffdf9;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-section {
+        background-image: url("https://readdy.ai/api/search-image?query=A%20real%2C%20high-end%20Thai%20coffee%20shop%20interior%20during%20golden%20hour.%20Natural%20sunlight%20streams%20through%20large%20windows%2C%20illuminating%20a%20modern%20rustic%20space%20with%20polished%20wooden%20tables%2C%20leather%20seating%2C%20and%20exposed%20brick%20walls.%20A%20professional%20barista%20in%20crisp%20attire%20works%20at%20a%20sleek%20espresso%20machine%20while%20customers%20enjoy%20their%20coffee.%20Warm%20ambient%20lighting%20from%20pendant%20lamps%20creates%20an%20inviting%20atmosphere.%20The%20scene%20includes%20lush%20indoor%20plants%2C%20authentic%20Thai%20decorative%20elements%2C%20and%20a%20view%20of%20the%20busy%20Bangkok%20street%20outside.%20The%20left%20side%20of%20the%20image%20smoothly%20transitions%20to%20a%20darker%2C%20cleaner%20area%20perfect%20for%20text%20overlay.%20Photorealistic%20style%20with%20natural%20lighting%20and%20rich%20textures.&width=1920&height=1080&seq=hero2&orientation=landscape");
+        background-size: cover;
+        background-position: center;
+      }
+      .promo-badge {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+      .gallery-img {
+        transition: transform 0.3s ease;
+      }
+      .gallery-img:hover {
+        transform: scale(1.05);
+      }
+      .feature-card {
+        transition: all 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(93, 64, 55, 0.15);
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #d2691e;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      input:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-95 shadow-sm"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center">
+          <div class="w-10 h-10 flex items-center justify-center mr-2">
+            <i class="ri-cup-line ri-2x text-primary"></i>
+          </div>
+          <h1 class="text-2xl font-['Playfair_Display'] font-bold text-primary">
+            BREW BANGKOK
+          </h1>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            class="nav-link text-primary hover:text-secondary font-medium"
+            >Home</a
+          >
+          <a
+            href="#menu"
+            class="nav-link text-primary hover:text-secondary font-medium"
+            >Menu</a
+          >
+          <a
+            href="#gallery"
+            class="nav-link text-primary hover:text-secondary font-medium"
+            >Gallery</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-primary hover:text-secondary font-medium"
+            >About</a
+          >
+          <a
+            href="#location"
+            class="nav-link text-primary hover:text-secondary font-medium"
+            >Location</a
+          >
+        </div>
+        <button
+          class="bg-primary text-white px-5 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap"
+        >
+          Order Coffee
+        </button>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-section relative pt-28 pb-20 md:pt-40 md:pb-32">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent"
+      ></div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-2xl">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          >
+            Brewed to Perfection
+          </h1>
+          <p class="text-lg md:text-xl text-white/90 mb-8">
+            Experience the finest Thai coffee culture in the heart of Bangkok.
+            Artisanal brewing methods, premium beans, and a touch of Thai
+            elegance.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button
+              class="bg-secondary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap"
+            >
+              Explore Our Menu
+            </button>
+            <button
+              class="bg-white text-primary px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap"
+            >
+              Visit Us Today
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Promo Badge -->
+    <div class="fixed top-32 right-8 z-40 hidden md:block">
+      <div
+        class="promo-badge w-32 h-32 rounded-full bg-secondary text-white flex items-center justify-center text-center p-4 shadow-lg"
+      >
+        <div>
+          <p class="font-bold">Get 1 Free</p>
+          <p class="text-sm">Croissant</p>
+          <p class="text-xs mt-1">Today Only!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Featured Drinks -->
+    <section id="menu" class="py-16 bg-[#F5F5DC]/30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Our Signature Offerings
+          </h2>
+          <p class="text-gray-700 max-w-2xl mx-auto">
+            Discover our carefully crafted selection of Thai-inspired coffee
+            creations, made with locally sourced beans and traditional brewing
+            techniques.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="feature-card bg-white rounded-lg overflow-hidden shadow-md"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20close-up%20shot%20of%20an%20espresso%20being%20poured%20into%20a%20small%20ceramic%20cup%20with%20beautiful%20crema%20forming%20on%20top.%20The%20espresso%20has%20a%20rich%2C%20dark%20color%20with%20golden-brown%20crema.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20texture%20and%20richness%20of%20the%20espresso.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=800&seq=espresso1&orientation=portrait"
+                alt="Espresso Masterpieces"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Espresso Masterpieces
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Our signature espresso shots crafted with precision and care.
+                Rich, bold, and perfectly balanced.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-secondary font-medium">฿60 - ฿120</span>
+                <button
+                  class="text-primary hover:text-secondary flex items-center"
+                >
+                  <span>View Menu</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="feature-card bg-white rounded-lg overflow-hidden shadow-md"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20refreshing%20iced%20coffee%20drink%20in%20a%20tall%20glass%20with%20condensed%20milk%20swirls%20and%20ice%20cubes.%20The%20drink%20has%20layers%20of%20coffee%20and%20milk%20creating%20a%20beautiful%20gradient%20effect.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20cold%2C%20refreshing%20nature%20of%20the%20drink.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=800&seq=iced1&orientation=portrait"
+                alt="Iced Favorites"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Iced Favorites
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Beat the Bangkok heat with our refreshing iced coffee creations,
+                including Thai iced coffee with condensed milk.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-secondary font-medium">฿85 - ฿150</span>
+                <button
+                  class="text-primary hover:text-secondary flex items-center"
+                >
+                  <span>View Menu</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="feature-card bg-white rounded-lg overflow-hidden shadow-md"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20beautiful%20latte%20in%20a%20white%20ceramic%20cup%20with%20intricate%20latte%20art%20on%20top.%20The%20latte%20has%20a%20perfect%20balance%20of%20espresso%20and%20steamed%20milk.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20texture%20and%20artistry%20of%20the%20drink.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=800&seq=latte1&orientation=portrait"
+                alt="Coffee Favorites"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Coffee Favorites
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Our selection of classic coffee drinks with a Thai twist,
+                featuring local spices and premium ingredients.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-secondary font-medium">฿75 - ฿140</span>
+                <button
+                  class="text-primary hover:text-secondary flex items-center"
+                >
+                  <span>View Menu</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="feature-card bg-white rounded-lg overflow-hidden shadow-md"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Fresh%20coffee%20beans%20in%20a%20wooden%20bowl%20with%20some%20scattered%20around.%20The%20beans%20are%20various%20shades%20of%20brown%20showing%20their%20quality%20and%20roast%20level.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20texture%20and%20richness%20of%20the%20coffee%20beans.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=800&seq=beans1&orientation=portrait"
+                alt="Organic Beans"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-2">Organic Beans</h3>
+              <p class="text-gray-600 mb-4">
+                Locally sourced, organic coffee beans from Northern Thailand's
+                highlands, available to purchase and enjoy at home.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-secondary font-medium">฿120 - ฿350</span>
+                <button
+                  class="text-primary hover:text-secondary flex items-center"
+                >
+                  <span>Shop Beans</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <img
+              src="https://readdy.ai/api/search-image?query=A%20Thai%20coffee%20shop%20interior%20with%20baristas%20working%20behind%20a%20wooden%20counter.%20The%20space%20has%20warm%20lighting%2C%20wooden%20elements%2C%20and%20a%20cozy%20atmosphere.%20There%20are%20some%20customers%20enjoying%20coffee%20at%20tables.%20The%20interior%20design%20combines%20traditional%20Thai%20elements%20with%20modern%20coffee%20shop%20aesthetics.%20The%20image%20has%20warm%20brown%20tones%20and%20cream%20colors%20consistent%20with%20the%20brand.%20High-quality%20professional%20photo%20with%20good%20lighting.&width=800&height=600&seq=shop1&orientation=landscape"
+              alt="Brew Bangkok Interior"
+              class="rounded-lg shadow-lg w-full"
+            />
+          </div>
+          <div class="md:w-1/2">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Our Coffee Journey
+            </h2>
+            <p class="text-gray-700 mb-4">
+              Founded in 2019, Brew Bangkok was born from a passion for bringing
+              together traditional Thai coffee culture with modern brewing
+              techniques. Our founder, Somchai Wattana, spent years studying
+              coffee cultivation in Thailand's northern regions before opening
+              our doors.
+            </p>
+            <p class="text-gray-700 mb-6">
+              We source our beans directly from small-scale farmers in Chiang
+              Rai and Chiang Mai, ensuring fair prices and sustainable
+              practices. Each cup we serve celebrates Thailand's rich coffee
+              heritage while embracing innovation.
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-[#F5F5DC]/50 p-4 rounded-lg">
+                <div
+                  class="w-10 h-10 flex items-center justify-center mb-2 text-secondary"
+                >
+                  <i class="ri-award-line ri-2x"></i>
+                </div>
+                <h3 class="font-bold text-primary mb-1">Award Winning</h3>
+                <p class="text-sm text-gray-600">
+                  2023 Bangkok Barista Championship Winner
+                </p>
+              </div>
+              <div class="bg-[#F5F5DC]/50 p-4 rounded-lg">
+                <div
+                  class="w-10 h-10 flex items-center justify-center mb-2 text-secondary"
+                >
+                  <i class="ri-leaf-line ri-2x"></i>
+                </div>
+                <h3 class="font-bold text-primary mb-1">Sustainable</h3>
+                <p class="text-sm text-gray-600">
+                  100% Organic & Ethically Sourced Beans
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-[#F5F5DC]/30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Coffee & Pastry Gallery
+          </h2>
+          <p class="text-gray-700 max-w-2xl mx-auto">
+            A visual feast of our handcrafted coffee creations and freshly baked
+            pastries that perfectly complement your coffee experience.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=A%20close-up%20of%20freshly%20baked%20croissants%20with%20a%20flaky%2C%20golden-brown%20exterior.%20The%20croissants%20are%20arranged%20on%20a%20wooden%20board%20with%20some%20coffee%20beans%20scattered%20around.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20texture%20and%20layers%20of%20the%20croissants.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=croissant1&orientation=squarish"
+              alt="Fresh Croissants"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=A%20specialty%20coffee%20drink%20with%20latte%20art%20and%20a%20cinnamon%20stick%20garnish.%20The%20drink%20is%20in%20an%20elegant%20cup%20on%20a%20wooden%20surface.%20There%20might%20be%20some%20Thai%20spices%20visible%20nearby.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20artistry%20and%20presentation.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=specialty1&orientation=squarish"
+              alt="Specialty Coffee"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=An%20assortment%20of%20Thai-inspired%20pastries%20and%20desserts%20arranged%20on%20a%20wooden%20platter.%20The%20pastries%20have%20both%20traditional%20Thai%20elements%20and%20Western%20influences.%20They%20look%20freshly%20baked%20with%20beautiful%20textures%20and%20colors.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20details%20of%20each%20pastry.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=pastry1&orientation=squarish"
+              alt="Thai Pastries"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=A%20barista%20carefully%20preparing%20pour-over%20coffee%20with%20precision%20and%20concentration.%20The%20barista%20is%20using%20professional%20equipment%20and%20the%20process%20is%20captured%20mid-pour.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20craftsmanship%20involved.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=pourover1&orientation=squarish"
+              alt="Pour Over Process"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=A%20beautiful%20arrangement%20of%20coffee%20and%20breakfast%20items%20on%20a%20wooden%20table.%20The%20spread%20includes%20a%20latte%2C%20croissants%2C%20fresh%20fruit%2C%20and%20perhaps%20some%20Thai%20elements%20like%20mango%20or%20coconut.%20The%20composition%20looks%20inviting%20and%20appetizing.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20create%20an%20appealing%20breakfast%20scene.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=breakfast1&orientation=squarish"
+              alt="Breakfast Spread"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+          <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+              src="https://readdy.ai/api/search-image?query=Close-up%20of%20coffee%20beans%20being%20roasted%20in%20a%20professional%20roaster.%20The%20beans%20are%20in%20various%20stages%20of%20roasting%20showing%20different%20shades%20of%20brown.%20There%20might%20be%20some%20steam%20or%20smoke%20visible.%20The%20background%20is%20simple%20and%20clean%20with%20warm%20brown%20tones.%20The%20image%20is%20high-quality%20and%20professionally%20lit%20to%20highlight%20the%20roasting%20process.%20Thai%20coffee%20shop%20setting%20with%20minimal%2C%20elegant%20styling.&width=600&height=600&seq=roasting1&orientation=squarish"
+              alt="Bean Roasting"
+              class="w-full h-72 object-cover object-top gallery-img"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            What Our Customers Say
+          </h2>
+          <p class="text-gray-700 max-w-2xl mx-auto">
+            Don't just take our word for it - hear from our regular customers
+            who make Brew Bangkok their coffee destination of choice.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-secondary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">
+              "The Thai-spiced latte is absolutely divine! I've never tasted
+              anything like it before. The subtle hints of cardamom and cinnamon
+              perfectly complement the rich espresso."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3"
+              >
+                <span class="text-primary font-bold">NP</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-primary">Naree Panyasiri</h4>
+                <p class="text-sm text-gray-600">Local Food Blogger</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-secondary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">
+              "As someone who works remotely, I've tried every coffee shop in
+              Bangkok. Brew Bangkok stands out for their exceptional service,
+              reliable Wi-Fi, and of course, the best coffee in the city."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3"
+              >
+                <span class="text-primary font-bold">JM</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-primary">James Morrison</h4>
+                <p class="text-sm text-gray-600">Digital Nomad</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-secondary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">
+              "Their croissants are as good as any I've had in Paris! Perfectly
+              flaky and buttery. Paired with their signature cold brew, it's my
+              weekend ritual that I look forward to all week."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3"
+              >
+                <span class="text-primary font-bold">SK</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-primary">Siriwan Kongkarat</h4>
+                <p class="text-sm text-gray-600">University Professor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Location Section -->
+    <section id="location" class="py-16 bg-[#F5F5DC]/30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Visit Us
+          </h2>
+          <p class="text-gray-700 max-w-2xl mx-auto">
+            Located in the heart of Sukhumvit, our cafe is easily accessible by
+            BTS and offers a tranquil escape from the bustling city.
+          </p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2 bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold text-primary mb-4">Our Location</h3>
+            <div
+              class="h-64 rounded overflow-hidden mb-4 bg-cover bg-center"
+              style="
+                background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');
+              "
+            ></div>
+            <div class="flex items-start mb-4">
+              <div
+                class="w-10 h-10 flex items-center justify-center mr-3 text-secondary"
+              >
+                <i class="ri-map-pin-line ri-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-primary">Address</h4>
+                <p class="text-gray-700">
+                  42 Sukhumvit Soi 24, Klongton, Klongtoey, Bangkok 10110,
+                  Thailand
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-10 h-10 flex items-center justify-center mr-3 text-secondary"
+              >
+                <i class="ri-train-line ri-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-primary">Getting Here</h4>
+                <p class="text-gray-700">
+                  5 minute walk from Phrom Phong BTS Station (Exit 4)
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold text-primary mb-4">Opening Hours</h3>
+            <div class="space-y-3">
+              <div
+                class="flex justify-between items-center pb-2 border-b border-gray-200"
+              >
+                <span class="font-medium">Monday - Friday</span>
+                <span>7:00 AM - 8:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between items-center pb-2 border-b border-gray-200"
+              >
+                <span class="font-medium">Saturday</span>
+                <span>8:00 AM - 9:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between items-center pb-2 border-b border-gray-200"
+              >
+                <span class="font-medium">Sunday</span>
+                <span>8:00 AM - 7:00 PM</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-primary mt-8 mb-4">Contact Us</h3>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center mr-3 text-secondary"
+                >
+                  <i class="ri-phone-line ri-lg"></i>
+                </div>
+                <span>+66 2 123 4567</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center mr-3 text-secondary"
+                >
+                  <i class="ri-mail-line ri-lg"></i>
+                </div>
+                <span>hello@brewbangkok.com</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center mr-3 text-secondary"
+                >
+                  <i class="ri-instagram-line ri-lg"></i>
+                </div>
+                <span>@brewbangkok</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="bg-primary rounded-lg p-8 md:p-12">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Join Our Coffee Community
+            </h2>
+            <p class="text-white/80 mb-8">
+              Subscribe to our newsletter for exclusive offers, brewing tips,
+              and updates on seasonal specials.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="px-4 py-3 rounded-button flex-1 border-none"
+              />
+              <button
+                class="bg-secondary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 flex items-center justify-center mr-2 text-secondary"
+              >
+                <i class="ri-cup-line ri-2x"></i>
+              </div>
+              <h3 class="text-2xl font-['Playfair_Display'] font-bold">
+                BREW BANGKOK
+              </h3>
+            </div>
+            <p class="text-white/70 mb-4">
+              Premium Thai coffee experience in the heart of Bangkok. Artisanal
+              brewing, local beans, and Thai-inspired flavors.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-secondary transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-secondary transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-secondary transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-white/70 hover:text-secondary">Home</a>
+              </li>
+              <li>
+                <a href="#menu" class="text-white/70 hover:text-secondary"
+                  >Menu</a
+                >
+              </li>
+              <li>
+                <a href="#about" class="text-white/70 hover:text-secondary"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#gallery" class="text-white/70 hover:text-secondary"
+                  >Gallery</a
+                >
+              </li>
+              <li>
+                <a href="#location" class="text-white/70 hover:text-secondary"
+                  >Location</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Opening Hours</h4>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span class="text-white/70">Mon - Fri</span>
+                <span class="text-white">7:00 AM - 8:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-white/70">Saturday</span>
+                <span class="text-white">8:00 AM - 9:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-white/70">Sunday</span>
+                <span class="text-white">8:00 AM - 7:00 PM</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Contact</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center mr-2 text-secondary"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-white/70"
+                  >42 Sukhumvit Soi 24, Bangkok 10110</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center mr-2 text-secondary"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-white/70">+66 2 123 4567</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center mr-2 text-secondary"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-white/70">hello@brewbangkok.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-white/50 text-sm mb-4 md:mb-0">
+            © 2025 Brew Bangkok. All rights reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-visa-line text-white/70"></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-mastercard-line text-white/70"></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-paypal-line text-white/70"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script id="navigationScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href.startsWith("#") && href !== "#") {
+              e.preventDefault();
+              const targetSection = document.querySelector(href);
+              if (targetSection) {
+                window.scrollTo({
+                  top: targetSection.offsetTop - 80,
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+    <script id="promoAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const promoBadge = document.querySelector(".promo-badge");
+        if (promoBadge) {
+          setTimeout(() => {
+            promoBadge.style.display = "flex";
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Lotus - Premium Thai Restaurant</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#D4AF37',secondary:'#000000'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        :root {
+            --gold: #D4AF37;
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            cursor: none;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.5);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor.hover {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(212, 175, 55, 0.3);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--gold);
+            z-index: 9999;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--gold);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--gold) }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            perspective: 1000px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .gallery-item {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03) perspective(1000px) rotateX(2deg) rotateY(2deg);
+            z-index: 1;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: transparent;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 0.75rem;
+            font-size: 1rem;
+            color: #6b7280;
+            pointer-events: none;
+            transition: transform 0.3s, font-size 0.3s, color 0.3s;
+        }
+        
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            transform: translateY(-1.5rem);
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+        
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .magnetic-btn {
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hamburger {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .hamburger span:nth-child(2) {
+            top: 9px;
+        }
+        
+        .hamburger span:nth-child(3) {
+            top: 18px;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+            top: 9px;
+            transform: rotate(135deg);
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-135deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        /* Disable default input styles */
+        input, button, select, textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <div class="cursor"></div>
+    <div class="progress-bar"></div>
+    
+    <div class="lightbox">
+        <img src="" alt="Enlarged food" class="lightbox-img">
+        <button class="absolute top-6 right-6 text-white text-4xl close-lightbox">
+            <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-close-line"></i>
+            </div>
+        </button>
+    </div>
+    
+    <header class="fixed top-0 left-0 w-full z-50 nav-blur">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary">Golden Lotus</a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-primary transition-colors duration-300 relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#menu" class="text-white hover:text-primary transition-colors duration-300 relative group">
+                        Menu
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#gallery" class="text-white hover:text-primary transition-colors duration-300 relative group">
+                        Gallery
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-white hover:text-primary transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-white hover:text-primary transition-colors duration-300 relative group">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#reservation" class="bg-primary text-black px-6 py-2 !rounded-button magnetic-btn hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">
+                        Book a Table
+                    </a>
+                </div>
+                
+                <div class="md:hidden hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="mobile-menu">
+        <a href="#home" class="text-white text-xl mb-6 hover:text-primary transition-colors duration-300">Home</a>
+        <a href="#menu" class="text-white text-xl mb-6 hover:text-primary transition-colors duration-300">Menu</a>
+        <a href="#gallery" class="text-white text-xl mb-6 hover:text-primary transition-colors duration-300">Gallery</a>
+        <a href="#about" class="text-white text-xl mb-6 hover:text-primary transition-colors duration-300">About</a>
+        <a href="#contact" class="text-white text-xl mb-6 hover:text-primary transition-colors duration-300">Contact</a>
+        <a href="#reservation" class="bg-primary text-black px-6 py-2 !rounded-button mt-4 hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Book a Table</a>
+    </div>
+    
+    <section id="home" class="hero min-h-screen flex items-center justify-center relative" style="background-image: url('https://readdy.ai/api/search-image?query=Luxurious%20Thai%20restaurant%20interior%20with%20elegant%20golden%20decorations%2C%20soft%20lighting%2C%20beautiful%20table%20settings%20with%20gold%20accents%2C%20traditional%20Thai%20art%20on%20walls%2C%20orchid%20flowers%2C%20atmospheric%20lighting%20creating%20a%20premium%20dining%20atmosphere%2C%20high-end%20restaurant&width=1920&height=1080&seq=1&orientation=landscape');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-6 z-10 text-center">
+            <div class="floating">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4">Golden Lotus</h1>
+                <div class="h-0.5 w-24 bg-primary mx-auto my-6"></div>
+                <h2 class="typewriter text-xl md:text-2xl text-white inline-block">Where Every Bite Tells a Story</h2>
+            </div>
+            <p class="text-white text-lg max-w-2xl mx-auto mt-8 mb-12">Experience authentic Thai cuisine in an elegant setting, where traditional recipes meet modern culinary artistry.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-primary text-black px-8 py-3 !rounded-button magnetic-btn hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">
+                    Explore Menu
+                </a>
+                <a href="#reservation" class="border-2 border-primary text-white px-8 py-3 !rounded-button magnetic-btn hover:bg-primary hover:bg-opacity-10 transition-all duration-300 whitespace-nowrap">
+                    Reserve a Table
+                </a>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div class="w-10 h-10 flex items-center justify-center text-white">
+                    <i class="ri-arrow-down-line ri-2x"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="specials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-4">Chef's Specials</h2>
+                <div class="h-0.5 w-24 bg-primary mx-auto my-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Our master chef curates these signature dishes, combining traditional Thai flavors with modern culinary techniques.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="card scroll-reveal" data-delay="0.1">
+                    <div class="card-inner">
+                        <div class="card-front bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full">
+                            <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20Tom%20Yum%20Goong%20soup%20with%20prawns%2C%20mushrooms%2C%20lemongrass%2C%20and%20lime%20leaves%20in%20a%20beautiful%20ceramic%20bowl%20with%20gold%20accents%2C%20garnished%20with%20fresh%20cilantro%20and%20chili%2C%20on%20a%20dark%20background%20with%20soft%20lighting%2C%20premium%20restaurant%20presentation&width=600&height=400&seq=2&orientation=landscape" alt="Tom Yum Goong" class="w-full h-64 object-cover object-top">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold mb-2">Tom Yum Goong</h3>
+                                <div class="flex items-center mb-4">
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-half-fill"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-500 text-sm ml-2">(128)</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Iconic spicy and sour soup with jumbo prawns, fresh lemongrass, and Thai herbs.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold">$18.95</span>
+                                    <button class="flip-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4">Tom Yum Goong</h3>
+                                <p class="text-gray-600 mb-4">Our signature Tom Yum Goong features jumbo tiger prawns in a fragrant lemongrass broth, balanced with lime juice, galangal, and Thai chili. This award-winning dish perfectly captures the essence of Thai cuisine's complex flavor profile.</p>
+                                <div class="mb-4">
+                                    <h4 class="font-semibold text-gray-800 mb-2">Ingredients:</h4>
+                                    <ul class="text-gray-600 space-y-1">
+                                        <li>• Fresh Tiger Prawns</li>
+                                        <li>• Lemongrass</li>
+                                        <li>• Kaffir Lime Leaves</li>
+                                        <li>• Galangal</li>
+                                        <li>• Thai Chili</li>
+                                        <li>• Straw Mushrooms</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 bg-red-500 rounded-full text-white text-xs">
+                                        <i class="ri-fire-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Spice Level: Medium-Hot</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold">$18.95</span>
+                                <button class="flip-back-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card scroll-reveal" data-delay="0.2">
+                    <div class="card-inner">
+                        <div class="card-front bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full">
+                            <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Pad%20Thai%20with%20prawns%2C%20bean%20sprouts%2C%20crushed%20peanuts%2C%20and%20lime%20wedge%20on%20a%20beautiful%20ceramic%20plate%20with%20gold%20accents%2C%20garnished%20with%20fresh%20herbs%2C%20on%20a%20dark%20background%20with%20soft%20lighting%2C%20premium%20restaurant%20presentation&width=600&height=400&seq=3&orientation=landscape" alt="Royal Pad Thai" class="w-full h-64 object-cover object-top">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold mb-2">Royal Pad Thai</h3>
+                                <div class="flex items-center mb-4">
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-500 text-sm ml-2">(156)</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Luxurious take on the classic Thai stir-fried noodles with premium seafood and tamarind sauce.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold">$22.95</span>
+                                    <button class="flip-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4">Royal Pad Thai</h3>
+                                <p class="text-gray-600 mb-4">Our Royal Pad Thai elevates the beloved classic with premium ingredients. Hand-selected rice noodles are wok-fried with Maine lobster, jumbo prawns, and Hokkaido scallops in our house-made tamarind sauce, then garnished with hand-crushed peanuts and organic microgreens.</p>
+                                <div class="mb-4">
+                                    <h4 class="font-semibold text-gray-800 mb-2">Ingredients:</h4>
+                                    <ul class="text-gray-600 space-y-1">
+                                        <li>• Maine Lobster</li>
+                                        <li>• Jumbo Prawns</li>
+                                        <li>• Hokkaido Scallops</li>
+                                        <li>• Rice Noodles</li>
+                                        <li>• Tamarind Sauce</li>
+                                        <li>• Bean Sprouts</li>
+                                        <li>• Crushed Peanuts</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 bg-yellow-500 rounded-full text-white text-xs">
+                                        <i class="ri-fire-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Spice Level: Mild (Adjustable)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold">$22.95</span>
+                                <button class="flip-back-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card scroll-reveal" data-delay="0.3">
+                    <div class="card-inner">
+                        <div class="card-front bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full">
+                            <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20Green%20Curry%20with%20tender%20chicken%2C%20eggplant%2C%20bamboo%20shoots%20in%20a%20beautiful%20ceramic%20bowl%20with%20gold%20accents%2C%20garnished%20with%20Thai%20basil%20and%20sliced%20red%20chili%2C%20on%20a%20dark%20background%20with%20soft%20lighting%2C%20premium%20restaurant%20presentation&width=600&height=400&seq=4&orientation=landscape" alt="Emerald Curry" class="w-full h-64 object-cover object-top">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold mb-2">Emerald Curry</h3>
+                                <div class="flex items-center mb-4">
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary text-sm mr-1">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-500 text-sm ml-2">(142)</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Rich green curry with tender chicken, Thai eggplant, and aromatic basil in coconut milk.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold">$20.95</span>
+                                    <button class="flip-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 h-full p-6 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4">Emerald Curry</h3>
+                                <p class="text-gray-600 mb-4">Our Emerald Curry features a house-made green curry paste created from fresh herbs and spices ground by hand each morning. Free-range chicken is simmered in rich coconut milk with Thai eggplant, bamboo shoots, and sweet basil, creating a harmonious balance of spicy, sweet, and savory flavors.</p>
+                                <div class="mb-4">
+                                    <h4 class="font-semibold text-gray-800 mb-2">Ingredients:</h4>
+                                    <ul class="text-gray-600 space-y-1">
+                                        <li>• House-made Green Curry Paste</li>
+                                        <li>• Free-range Chicken</li>
+                                        <li>• Premium Coconut Milk</li>
+                                        <li>• Thai Eggplant</li>
+                                        <li>• Bamboo Shoots</li>
+                                        <li>• Thai Sweet Basil</li>
+                                        <li>• Kaffir Lime Leaves</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 bg-red-600 rounded-full text-white text-xs">
+                                        <i class="ri-fire-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Spice Level: Hot (Adjustable)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold">$20.95</span>
+                                <button class="flip-back-btn text-primary hover:text-black hover:bg-primary transition-colors duration-300 border border-primary !rounded-button px-4 py-2 whitespace-nowrap">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#menu" class="inline-block bg-primary text-black px-8 py-3 !rounded-button magnetic-btn hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="menu" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-4">Our Menu</h2>
+                <div class="h-0.5 w-24 bg-primary mx-auto my-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our carefully curated selection of authentic Thai dishes, each prepared with the finest ingredients and traditional techniques.</p>
+            </div>
+            
+            <div class="flex justify-center mb-10 scroll-reveal">
+                <div class="inline-flex bg-white p-1 rounded-full shadow-sm">
+                    <button class="menu-filter-btn active px-6 py-2 rounded-full text-black bg-primary whitespace-nowrap" data-filter="all">All</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full text-gray-700 hover:text-black whitespace-nowrap" data-filter="appetizers">Appetizers</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full text-gray-700 hover:text-black whitespace-nowrap" data-filter="soups">Soups</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full text-gray-700 hover:text-black whitespace-nowrap" data-filter="curries">Curries</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full text-gray-700 hover:text-black whitespace-nowrap" data-filter="noodles">Noodles & Rice</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full text-gray-700 hover:text-black whitespace-nowrap" data-filter="desserts">Desserts</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="appetizers" data-delay="0.1">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Golden Lotus Spring Rolls</h3>
+                            <span class="text-lg font-bold text-primary">$12.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Crispy spring rolls filled with glass noodles, shiitake mushrooms, and vegetables, served with sweet chili dipping sauce.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-leaf-line"></i>
+                            </div>
+                            <span>Vegetarian option available</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="appetizers" data-delay="0.2">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Satay Sampler</h3>
+                            <span class="text-lg font-bold text-primary">$14.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Grilled skewers of marinated chicken and beef with our signature peanut sauce and cucumber relish.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Mild</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="soups" data-delay="0.3">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Tom Kha Gai</h3>
+                            <span class="text-lg font-bold text-primary">$16.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Aromatic coconut soup with chicken, galangal, lemongrass, and mushrooms, finished with lime and cilantro.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Medium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="curries" data-delay="0.1">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Panang Curry</h3>
+                            <span class="text-lg font-bold text-primary">$21.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Rich and creamy curry with your choice of protein, bell peppers, and Thai basil, topped with crushed peanuts.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Medium-Hot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="curries" data-delay="0.2">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Massaman Curry</h3>
+                            <span class="text-lg font-bold text-primary">$22.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Slow-cooked beef in a rich, aromatic curry with potatoes, onions, and roasted peanuts, infused with cinnamon and star anise.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Mild</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="noodles" data-delay="0.3">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Drunken Noodles</h3>
+                            <span class="text-lg font-bold text-primary">$19.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Stir-fried wide rice noodles with your choice of protein, Thai basil, bell peppers, and chili in a savory sauce.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Hot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="noodles" data-delay="0.1">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Pineapple Fried Rice</h3>
+                            <span class="text-lg font-bold text-primary">$18.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Jasmine rice stir-fried with shrimp, chicken, pineapple, cashews, and curry powder, served in a pineapple half.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-award-line"></i>
+                            </div>
+                            <span>House Specialty</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="desserts" data-delay="0.2">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Mango Sticky Rice</h3>
+                            <span class="text-lg font-bold text-primary">$10.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sweet coconut sticky rice with fresh mango slices, topped with coconut cream and toasted sesame seeds.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-leaf-line"></i>
+                            </div>
+                            <span>Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg shadow-md overflow-hidden scroll-reveal" data-category="desserts" data-delay="0.3">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold">Coconut Ice Cream</h3>
+                            <span class="text-lg font-bold text-primary">$8.95</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Homemade coconut ice cream served in a coconut shell with palm seeds, jackfruit, and crushed peanuts.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-leaf-line"></i>
+                            </div>
+                            <span>Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-4">Gallery</h2>
+                <div class="h-0.5 w-24 bg-primary mx-auto my-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Feast your eyes on our culinary creations and elegant dining atmosphere.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.1">
+                    <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20dish%20with%20beautiful%20presentation%2C%20vibrant%20colors%2C%20premium%20ingredients%2C%20on%20a%20beautiful%20ceramic%20plate%20with%20gold%20accents%2C%20soft%20lighting%2C%20professional%20food%20photography%2C%20high-end%20restaurant&width=600&height=600&seq=5&orientation=squarish" alt="Thai Dish" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.2">
+                    <img src="https://readdy.ai/api/search-image?query=Luxurious%20Thai%20restaurant%20interior%20with%20elegant%20golden%20decorations%2C%20soft%20lighting%2C%20beautiful%20table%20settings%20with%20gold%20accents%2C%20traditional%20Thai%20art%20on%20walls%2C%20atmospheric%20lighting%20creating%20a%20premium%20dining%20atmosphere%2C%20high-end%20restaurant&width=600&height=600&seq=6&orientation=squarish" alt="Restaurant Interior" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.3">
+                    <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20curry%20dish%20with%20beautiful%20presentation%2C%20vibrant%20colors%2C%20premium%20ingredients%2C%20on%20a%20beautiful%20ceramic%20bowl%20with%20gold%20accents%2C%20soft%20lighting%2C%20professional%20food%20photography%2C%20high-end%20restaurant&width=600&height=600&seq=7&orientation=squarish" alt="Thai Curry" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.4">
+                    <img src="https://readdy.ai/api/search-image?query=Thai%20chef%20in%20professional%20kitchen%20preparing%20gourmet%20Thai%20cuisine%2C%20focused%20on%20detailed%20plating%2C%20premium%20ingredients%2C%20elegant%20atmosphere%2C%20high-end%20restaurant%20kitchen&width=600&height=600&seq=8&orientation=squarish" alt="Chef Preparing Food" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.1">
+                    <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20dessert%20with%20beautiful%20presentation%2C%20vibrant%20colors%2C%20premium%20ingredients%2C%20on%20a%20beautiful%20ceramic%20plate%20with%20gold%20accents%2C%20soft%20lighting%2C%20professional%20food%20photography%2C%20high-end%20restaurant&width=600&height=600&seq=9&orientation=squarish" alt="Thai Dessert" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.2">
+                    <img src="https://readdy.ai/api/search-image?query=Luxurious%20Thai%20restaurant%20bar%20with%20elegant%20golden%20decorations%2C%20soft%20lighting%2C%20beautiful%20cocktails%20with%20Thai%20ingredients%2C%20atmospheric%20lighting%20creating%20a%20premium%20bar%20atmosphere%2C%20high-end%20restaurant&width=600&height=600&seq=10&orientation=squarish" alt="Restaurant Bar" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.3">
+                    <img src="https://readdy.ai/api/search-image?query=Elegant%20plated%20Thai%20appetizers%20with%20beautiful%20presentation%2C%20vibrant%20colors%2C%20premium%20ingredients%2C%20on%20a%20beautiful%20ceramic%20plate%20with%20gold%20accents%2C%20soft%20lighting%2C%20professional%20food%20photography%2C%20high-end%20restaurant&width=600&height=600&seq=11&orientation=squarish" alt="Thai Appetizers" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="gallery-item scroll-reveal overflow-hidden rounded-lg shadow-md" data-delay="0.4">
+                    <img src="https://readdy.ai/api/search-image?query=Luxurious%20Thai%20restaurant%20private%20dining%20room%20with%20elegant%20golden%20decorations%2C%20soft%20lighting%2C%20beautiful%20table%20settings%20with%20gold%20accents%2C%20traditional%20Thai%20art%20on%20walls%2C%20atmospheric%20lighting%20creating%20a%20premium%20dining%20atmosphere%2C%20high-end%20restaurant&width=600&height=600&seq=12&orientation=squarish" alt="Private Dining Room" class="w-full h-64 object-cover object-top transition-transform duration-500 hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20Thai%20chef%20in%20elegant%20chef%20uniform%20with%20gold%20accents%2C%20standing%20confidently%20in%20a%20luxury%20Thai%20restaurant%20kitchen%2C%20soft%20lighting%2C%20professional%20portrait%20photography%2C%20high-end%20restaurant&width=600&height=800&seq=13&orientation=portrait" alt="Chef Portrait" class="w-full h-auto rounded-lg shadow-xl">
+                </div>
+                
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl font-bold mb-6">Our Story</h2>
+                    <div class="h-0.5 w-24 bg-primary mb-8"></div>
+                    
+                    <p class="text-gray-600 mb-6">Golden Lotus was founded in 2010 by Chef Somchai Pattana, whose culinary journey began in the vibrant street markets of Bangkok and led through the kitchens of five-star hotels across Southeast Asia.</p>
+                    
+                    <p class="text-gray-600 mb-6">Our philosophy is simple: to create an authentic Thai dining experience that honors traditional recipes while embracing modern culinary techniques. Each dish tells a story of Thailand's rich culinary heritage, using only the finest ingredients sourced both locally and directly from Thailand.</p>
+                    
+                    <p class="text-gray-600 mb-8">At Golden Lotus, we believe that dining is not just about food—it's about creating memorable experiences. Our elegant setting, attentive service, and exquisite cuisine come together to transport you to Thailand, if only for an evening.</p>
+                    
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">15</div>
+                            <div class="text-gray-500">Years of Excellence</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">42</div>
+                            <div class="text-gray-500">Signature Dishes</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">8</div>
+                            <div class="text-gray-500">Culinary Awards</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="reservation" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl font-bold mb-6">Reserve a Table</h2>
+                    <div class="h-0.5 w-24 bg-primary mb-8"></div>
+                    
+                    <p class="text-gray-600 mb-8">Experience the finest Thai cuisine in an elegant setting. Reserve your table today and embark on a culinary journey through the flavors of Thailand.</p>
+                    
+                    <form id="reservation-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-input border-none bg-gray-50" placeholder=" " required>
+                                <label for="name" class="form-label">Full Name</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-input border-none bg-gray-50" placeholder=" " required>
+                                <label for="email" class="form-label">Email Address</label>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <input type="tel" id="phone" class="form-input border-none bg-gray-50" placeholder=" " required>
+                                <label for="phone" class="form-label">Phone Number</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="number" id="guests" class="form-input border-none bg-gray-50" placeholder=" " min="1" max="20" required>
+                                <label for="guests" class="form-label">Number of Guests</label>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <input type="date" id="date" class="form-input border-none bg-gray-50" placeholder=" " required>
+                                <label for="date" class="form-label">Date</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="time" id="time" class="form-input border-none bg-gray-50" placeholder=" " required>
+                                <label for="time" class="form-label">Time</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="special-requests" rows="4" class="form-input border-none bg-gray-50" placeholder=" "></textarea>
+                            <label for="special-requests" class="form-label">Special Requests</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-black py-3 !rounded-button magnetic-btn hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Confirm Reservation</button>
+                    </form>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-2xl font-semibold mb-6">Hours & Location</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-lg mb-3">Opening Hours</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex justify-between">
+                                    <span>Monday - Thursday</span>
+                                    <span>11:30 AM - 10:00 PM</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Friday - Saturday</span>
+                                    <span>11:30 AM - 11:00 PM</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Sunday</span>
+                                    <span>12:00 PM - 9:00 PM</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-lg mb-3">Contact Information</h4>
+                            <ul class="space-y-4 text-gray-600">
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-primary">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    <span>123 Culinary Avenue, Gourmet District<br>New York, NY 10001</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-primary">
+                                        <i class="ri-phone-line"></i>
+                                    </div>
+                                    <span>(212) 555-8765</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-primary">
+                                        <i class="ri-mail-line"></i>
+                                    </div>
+                                    <span>reservations@goldenlotus.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-lg mb-3">Parking Information</h4>
+                            <p class="text-gray-600">Complimentary valet parking is available during dinner hours. Public parking is also available at the Gourmet District Garage, located one block south of the restaurant.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-lg mb-3">Private Events</h4>
+                            <p class="text-gray-600 mb-4">Golden Lotus offers elegant private dining spaces for special occasions and corporate events. Please contact our events team for more information.</p>
+                            <a href="#contact" class="text-primary hover:underline flex items-center">
+                                <span>Learn More</span>
+                                <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                    <i class="ri-arrow-right-line"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="lg:col-span-1 scroll-reveal">
+                    <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+                    <div class="h-0.5 w-24 bg-primary mb-8"></div>
+                    
+                    <p class="text-gray-300 mb-8">We'd love to hear from you. Whether you have a question about our menu, reservations, or private events, our team is here to assist you.</p>
+                    
+                    <ul class="space-y-6 text-gray-300">
+                        <li class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center mr-4 bg-primary bg-opacity-20 rounded-full text-primary">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Address</h4>
+                                <p>123 Culinary Avenue, Gourmet District<br>New York, NY 10001</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center mr-4 bg-primary bg-opacity-20 rounded-full text-primary">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Phone</h4>
+                                <p>(212) 555-8765</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center mr-4 bg-primary bg-opacity-20 rounded-full text-primary">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Email</h4>
+                                <p>info@goldenlotus.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-white mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full text-primary hover:bg-opacity-30 transition-all duration-300">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full text-primary hover:bg-opacity-30 transition-all duration-300">
+                                <i class="ri-instagram-line"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full text-primary hover:bg-opacity-30 transition-all duration-300">
+                                <i class="ri-twitter-x-line"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full text-primary hover:bg-opacity-30 transition-all duration-300">
+                                <i class="ri-yelp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 scroll-reveal">
+                    <form id="contact-form" class="bg-gray-800 p-8 rounded-lg">
+                        <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" class="form-input border-none bg-gray-700 text-white" placeholder=" " required>
+                                <label for="contact-name" class="form-label text-gray-400">Your Name</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="contact-email" class="form-input border-none bg-gray-700 text-white" placeholder=" " required>
+                                <label for="contact-email" class="form-label text-gray-400">Email Address</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-6">
+                            <input type="text" id="contact-subject" class="form-input border-none bg-gray-700 text-white" placeholder=" " required>
+                            <label for="contact-subject" class="form-label text-gray-400">Subject</label>
+                        </div>
+                        
+                        <div class="form-group mb-6">
+                            <textarea id="contact-message" rows="5" class="form-input border-none bg-gray-700 text-white" placeholder=" " required></textarea>
+                            <label for="contact-message" class="form-label text-gray-400">Your Message</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-black py-3 !rounded-button magnetic-btn hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <a href="#" class="text-3xl font-['Pacifico'] text-primary mb-6 inline-block">Golden Lotus</a>
+                    <p class="text-gray-400 mb-6">Experience the authentic flavors of Thailand in an elegant setting. Our award-winning chefs create culinary masterpieces that honor traditional recipes while embracing modern techniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                            <div class="w-6 h-6 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                            <div class="w-6 h-6 flex items-center justify-center">
+                                <i class="ri-instagram-line"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                            <div class="w-6 h-6 flex items-center justify-center">
+                                <i class="ri-twitter-x-line"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                            <div class="w-6 h-6 flex items-center justify-center">
+                                <i class="ri-yelp-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-primary transition-colors duration-300">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-primary transition-colors duration-300">Menu</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-primary transition-colors duration-300">Gallery</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-primary transition-colors duration-300">About Us</a></li>
+                        <li><a href="#reservation" class="text-gray-400 hover:text-primary transition-colors duration-300">Reservations</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Opening Hours</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>Monday - Thursday</span>
+                            <span>11:30 - 22:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Friday - Saturday</span>
+                            <span>11:30 - 23:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>12:00 - 21:00</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                    <form id="newsletter-form" class="flex">
+                        <input type="email" placeholder="Your email address" class="px-4 py-2 bg-gray-800 text-white rounded-l-button focus:outline-none w-full" required>
+                        <button type="submit" class="bg-primary text-black px-4 py-2 rounded-r-button whitespace-nowrap">Subscribe</button>
+                    </form>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-semibold mb-4">We Accept</h4>
+                        <div class="flex space-x-3">
+                            <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                                <i class="ri-visa-fill ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                                <i class="ri-mastercard-fill ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                                <i class="ri-american-express-fill ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center text-gray-400">
+                                <i class="ri-paypal-fill ri-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Golden Lotus Thai Restaurant. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-primary transition-colors duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="cursor-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.querySelector('.cursor');
+            
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            
+            const links = document.querySelectorAll('a, button, .gallery-item, .card, .menu-filter-btn');
+            
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                
+                link.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        });
+    </script>
+    
+    <script id="progress-bar-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.querySelector('.progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = (scrollTop / scrollHeight) * 100;
+                
+                progressBar.style.width = progress + '%';
+            });
+        });
+    </script>
+    
+    <script id="scroll-reveal-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            
+            const revealElement = () => {
+                scrollRevealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        const delay = element.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            element.classList.add('active');
+                        }, delay * 1000);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', revealElement);
+            revealElement();
+        });
+    </script>
+    
+    <script id="card-flip-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const flipBtns = document.querySelectorAll('.flip-btn');
+            const flipBackBtns = document.querySelectorAll('.flip-back-btn');
+            
+            flipBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    card.classList.add('flipped');
+                });
+            });
+            
+            flipBackBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    card.classList.remove('flipped');
+                });
+            });
+        });
+    </script>
+    
+    <script id="menu-filter-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.menu-filter-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-black'));
+                    filterBtns.forEach(b => b.classList.add('text-gray-700'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-primary', 'text-black');
+                    this.classList.remove('text-gray-700');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    menuItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script id="gallery-lightbox-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').getAttribute('src');
+                    lightboxImg.setAttribute('src', imgSrc);
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeLightbox.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+    
+    <script id="form-validation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const reservationForm = document.getElementById('reservation-form');
+            const contactForm = document.getElementById('contact-form');
+            const newsletterForm = document.getElementById('newsletter-form');
+            
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple validation
+                    let valid = true;
+                    const inputs = this.querySelectorAll('input, textarea');
+                    
+                    inputs.forEach(input => {
+                        if (input.hasAttribute('required') && !input.value.trim()) {
+                            valid = false;
+                            input.classList.add('border-red-500');
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    
+                    if (valid) {
+                        // Show success message
+                        alert('Reservation submitted successfully! We will contact you shortly to confirm your booking.');
+                        this.reset();
+                    }
+                });
+            }
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple validation
+                    let valid = true;
+                    const inputs = this.querySelectorAll('input, textarea');
+                    
+                    inputs.forEach(input => {
+                        if (input.hasAttribute('required') && !input.value.trim()) {
+                            valid = false;
+                            input.classList.add('border-red-500');
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    
+                    if (valid) {
+                        // Show success message
+                        alert('Message sent successfully! We will get back to you as soon as possible.');
+                        this.reset();
+                    }
+                });
+            }
+            
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple validation
+                    const emailInput = this.querySelector('input[type="email"]');
+                    
+                    if (!emailInput.value.trim()) {
+                        emailInput.classList.add('border-red-500');
+                    } else {
+                        emailInput.classList.remove('border-red-500');
+                        // Show success message
+                        alert('Thank you for subscribing to our newsletter!');
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <script id="ripple-effect-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn, button');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
+    
+    <script id="magnetic-button-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const magneticBtns = document.querySelectorAll('.magnetic-btn');
+            
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', function(e) {
+                    const position = btn.getBoundingClientRect();
+                    const x = e.clientX - position.left - position.width / 2;
+                    const y = e.clientY - position.top - position.height / 2;
+                    
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                
+                btn.addEventListener('mouseout', function() {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        });
+    </script>
+    
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                document.body.classList.toggle('overflow-hidden');
+            });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    document.body.classList.remove('overflow-hidden');
+                });
+            });
+        });
+    </script>
+    
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

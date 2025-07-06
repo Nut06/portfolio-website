@@ -29,6 +29,7 @@ import GlareHover from "@/components/ui/glarehover"
 import TiltedCard from "@/components/TiltedCard"
 import BlurText from "@/components/BlurText"
 import ShinyText from "@/components/ShinyText"
+import WebShowcaseSection from "@/components/WebShowcase/WebShowcaseSection"
 
 export default function Portfolio() {
   const [form, setForm] = useState({
@@ -464,6 +465,11 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      
+
+      {/* Web Development Showcase Section */}
+      <WebShowcaseSection language={language} />
 
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-white">

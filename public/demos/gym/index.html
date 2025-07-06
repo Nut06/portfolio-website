@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIT FUSION BANGKOK - Premium Fitness Experience</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#9ACD32", secondary: "#1a1a1a" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #1a1a1a;
+        color: white;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif;
+      }
+      .hero-section {
+        position: relative;
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(26, 26, 26, 0.9),
+          rgba(26, 26, 26, 0.7)
+        );
+      }
+      .stat-badge {
+        background: rgba(26, 26, 26, 0.8);
+        border: 2px solid #9acd32;
+        box-shadow: 0 0 15px rgba(154, 205, 50, 0.5);
+      }
+      .package-card {
+        transition: all 0.3s ease;
+        background: rgba(40, 40, 40, 0.8);
+      }
+      .package-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 25px rgba(154, 205, 50, 0.4);
+      }
+      .popular-badge {
+        background: #9acd32;
+        color: #1a1a1a;
+        font-weight: bold;
+        padding: 4px 12px;
+        border-radius: 20px;
+        position: absolute;
+        top: -12px;
+        right: 20px;
+      }
+      .trainer-card {
+        transition: all 0.3s ease;
+        background: rgba(40, 40, 40, 0.8);
+      }
+      .trainer-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(154, 205, 50, 0.3);
+      }
+      .experience-bar {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .experience-fill {
+        height: 100%;
+        background: #9acd32;
+      }
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(154, 205, 50, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(154, 205, 50, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(154, 205, 50, 0);
+        }
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #9acd32;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .feature-card {
+        transition: all 0.3s ease;
+        background: rgba(40, 40, 40, 0.8);
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(154, 205, 50, 0.3);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 50;
+        overflow-y: auto;
+      }
+      .modal-content {
+        background: #1a1a1a;
+        border: 2px solid #9acd32;
+        max-width: 600px;
+        margin: 50px auto;
+        border-radius: 8px;
+        position: relative;
+      }
+      input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #9acd32;
+        border-radius: 4px;
+        background: transparent;
+        position: relative;
+        cursor: pointer;
+      }
+      input[type="checkbox"]:checked::before {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #9acd32;
+        font-size: 14px;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: #9acd32;
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        letter-spacing: 2px;
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 w-full bg-secondary bg-opacity-95 z-40 shadow-lg"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <a href="#" class="flex items-center">
+          <div
+            class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-2"
+          >
+            <i class="ri-fitness-line text-secondary text-xl"></i>
+          </div>
+          <h1 class="text-2xl font-bold text-white">
+            FIT <span class="text-primary">Fusion</span>
+          </h1>
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            class="nav-link text-white hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-white hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="#features"
+            class="nav-link text-white hover:text-primary transition-colors"
+            >Features</a
+          >
+          <a
+            href="#services"
+            class="nav-link text-white hover:text-primary transition-colors"
+            >Service</a
+          >
+          <a
+            href="#exercise"
+            class="nav-link text-white hover:text-primary transition-colors"
+            >Exercise</a
+          >
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <button
+            class="border border-primary text-primary px-4 py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+          >
+            Contact Us
+          </button>
+          <button
+            class="bg-primary text-secondary px-5 py-2 rounded-button hover:bg-opacity-80 transition-colors pulse-animation whitespace-nowrap"
+          >
+            Get Started
+          </button>
+        </div>
+        <div
+          class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer"
+          id="mobile-menu-button"
+        >
+          <i class="ri-menu-line text-white text-2xl"></i>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-secondary w-full">
+        <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+          <a
+            href="#"
+            class="text-white hover:text-primary transition-colors py-2"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="text-white hover:text-primary transition-colors py-2"
+            >About</a
+          >
+          <a
+            href="#features"
+            class="text-white hover:text-primary transition-colors py-2"
+            >Features</a
+          >
+          <a
+            href="#services"
+            class="text-white hover:text-primary transition-colors py-2"
+            >Service</a
+          >
+          <a
+            href="#exercise"
+            class="text-white hover:text-primary transition-colors py-2"
+            >Exercise</a
+          >
+          <div class="flex flex-col space-y-3 pt-3 border-t border-gray-700">
+            <button
+              class="border border-primary text-primary px-4 py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+            >
+              Contact Us
+            </button>
+            <button
+              class="bg-primary text-secondary px-5 py-2 rounded-button hover:bg-opacity-80 transition-colors pulse-animation whitespace-nowrap"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+      class="hero-section"
+      style="
+        background-image: url('https://readdy.ai/api/search-image?query=dramatic%20silhouette%20of%20muscular%20athlete%20in%20dynamic%20pose%20against%20dark%20background%20with%20green%20accent%20lighting%2C%20professional%20fitness%20photography%2C%20high%20contrast%2C%20dramatic%20shadows%2C%20athletic%20body%2C%20powerful%20stance%2C%20minimalist%20composition&width=1920&height=1080&seq=1&orientation=landscape');
+      "
+    >
+      <div class="hero-overlay"></div>
+      <div
+        class="container mx-auto px-4 h-full w-full flex items-center relative"
+      >
+        <div class="absolute left-2 top-1/2 transform -translate-y-1/2">
+          <div
+            class="vertical-text text-gray-400 tracking-widest text-sm font-semibold"
+          >
+            PREV
+          </div>
+        </div>
+        <div class="absolute right-2 top-1/2 transform -translate-y-1/2">
+          <div
+            class="vertical-text text-primary tracking-widest text-sm font-semibold"
+          >
+            NEXT
+          </div>
+        </div>
+        <div class="w-full max-w-3xl mt-16">
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+            Sculpt Your Body, <span class="text-primary">Elevate</span> Your
+            Spirit
+          </h1>
+          <p class="text-xl mb-8 text-gray-300 max-w-2xl">
+            Bangkok's premier fitness destination combining modern equipment,
+            expert trainers, and innovative workout programs to transform your
+            body and mind.
+          </p>
+          <div class="flex flex-wrap gap-4 mb-12">
+            <button
+              class="bg-primary text-secondary px-8 py-3 rounded-button text-lg font-bold hover:bg-opacity-80 transition-colors pulse-animation whitespace-nowrap"
+            >
+              Start Your Journey
+            </button>
+            <button
+              class="border-2 border-white text-white px-8 py-3 rounded-button text-lg font-bold hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
+            >
+              View Programs
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-6">
+            <div
+              class="stat-badge flex flex-col items-center justify-center w-24 h-24 rounded-full"
+            >
+              <span
+                class="text-3xl font-bold text-primary counter"
+                data-target="1.5"
+                >0</span
+              >
+              <span class="text-sm">Hours</span>
+            </div>
+            <div
+              class="stat-badge flex flex-col items-center justify-center w-24 h-24 rounded-full"
+            >
+              <span
+                class="text-3xl font-bold text-primary counter"
+                data-target="20"
+                >0</span
+              >
+              <span class="text-sm">Poses</span>
+            </div>
+            <div
+              class="stat-badge flex flex-col items-center justify-center w-24 h-24 rounded-full"
+            >
+              <span
+                class="text-3xl font-bold text-primary counter"
+                data-target="15"
+                >0</span
+              >
+              <span class="text-sm">Trainers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-secondary">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              About <span class="text-primary">FIT Fusion</span> Bangkok
+            </h2>
+            <p class="text-gray-300 mb-6">
+              Founded in 2020, FIT Fusion Bangkok has quickly established itself
+              as the city's premier fitness destination. Our state-of-the-art
+              facilities in Sukhumvit and Silom combine modern equipment with
+              expert guidance to help you achieve your fitness goals.
+            </p>
+            <p class="text-gray-300 mb-8">
+              What sets us apart is our holistic approach to fitness. We believe
+              in not just transforming bodies, but elevating spirits. Our team
+              of certified trainers, nutritionists, and wellness experts work
+              together to create personalized programs that address your unique
+              needs.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+                >
+                  <i class="ri-24-hours-line text-primary"></i>
+                </div>
+                <span>24/7 Access</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+                >
+                  <i class="ri-user-star-line text-primary"></i>
+                </div>
+                <span>Expert Trainers</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+                >
+                  <i class="ri-map-pin-line text-primary"></i>
+                </div>
+                <span>2 Locations</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20luxurious%20gym%20interior%20with%20green%20accent%20lighting%2C%20high-end%20fitness%20equipment%2C%20spacious%20layout%2C%20dark%20aesthetic%2C%20premium%20fitness%20center%2C%20dramatic%20lighting%2C%20professional%20photography%2C%20Bangkok%20style&width=600&height=400&seq=2&orientation=landscape"
+              alt="FIT Fusion Gym Interior"
+              class="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Membership Packages -->
+    <section id="packages" class="py-20 bg-black bg-opacity-30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Membership <span class="text-primary">Packages</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Choose the membership that fits your lifestyle and fitness goals.
+            All packages include access to our state-of-the-art facilities and
+            basic amenities.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Basic Package -->
+          <div class="package-card rounded-lg overflow-hidden p-8 relative">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2">Basic</h3>
+              <div class="flex items-end gap-1 mb-4">
+                <span class="text-4xl font-bold">฿1,500</span>
+                <span class="text-gray-400">/month</span>
+              </div>
+              <div class="w-16 h-1 bg-primary mb-6"></div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Gym access (6 AM - 10 PM)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Basic fitness assessment</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>2 group classes per week</span>
+                </li>
+                <li class="flex items-center gap-2 text-gray-500">
+                  <i class="ri-close-circle-line"></i>
+                  <span>Personal training sessions</span>
+                </li>
+                <li class="flex items-center gap-2 text-gray-500">
+                  <i class="ri-close-circle-line"></i>
+                  <span>Nutrition consultation</span>
+                </li>
+                <li class="flex items-center gap-2 text-gray-500">
+                  <i class="ri-close-circle-line"></i>
+                  <span>Spa & recovery services</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              class="w-full border border-primary text-primary py-3 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+            >
+              Select Plan
+            </button>
+          </div>
+          <!-- Premium Package -->
+          <div
+            class="package-card rounded-lg overflow-hidden p-8 relative border-2 border-primary"
+          >
+            <div class="popular-badge">Most Popular</div>
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2">Premium</h3>
+              <div class="flex items-end gap-1 mb-4">
+                <span class="text-4xl font-bold">฿2,500</span>
+                <span class="text-gray-400">/month</span>
+              </div>
+              <div class="w-16 h-1 bg-primary mb-6"></div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>24/7 gym access</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Advanced fitness assessment</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Unlimited group classes</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>2 personal training sessions/month</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Basic nutrition consultation</span>
+                </li>
+                <li class="flex items-center gap-2 text-gray-500">
+                  <i class="ri-close-circle-line"></i>
+                  <span>Spa & recovery services</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              class="w-full bg-primary text-secondary py-3 rounded-button hover:bg-opacity-80 transition-colors whitespace-nowrap"
+            >
+              Select Plan
+            </button>
+          </div>
+          <!-- Elite Package -->
+          <div class="package-card rounded-lg overflow-hidden p-8 relative">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2">Elite</h3>
+              <div class="flex items-end gap-1 mb-4">
+                <span class="text-4xl font-bold">฿3,500</span>
+                <span class="text-gray-400">/month</span>
+              </div>
+              <div class="w-16 h-1 bg-primary mb-6"></div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>24/7 gym access (all locations)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Comprehensive fitness assessment</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Unlimited group classes</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>4 personal training sessions/month</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Advanced nutrition planning</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-primary"></i>
+                  <span>Spa & recovery services</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              class="w-full border border-primary text-primary py-3 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+            >
+              Select Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-secondary">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Our <span class="text-primary">Features</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Discover what makes FIT Fusion Bangkok the ultimate fitness
+            destination with our premium facilities and services.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card rounded-lg overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=modern%20gym%20equipment%20with%20green%20accent%20lighting%2C%20high-end%20fitness%20machines%2C%20dark%20aesthetic%2C%20premium%20weights%2C%20professional%20photography%2C%20clean%20and%20organized&width=400&height=300&seq=3&orientation=landscape"
+              alt="State-of-the-art Equipment"
+              class="w-full h-48 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">State-of-the-art Equipment</h3>
+              <p class="text-gray-300">
+                Our facilities feature the latest fitness technology and premium
+                equipment from leading brands, ensuring an effective and
+                enjoyable workout experience.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card rounded-lg overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20fitness%20class%20in%20modern%20gym%20with%20green%20accent%20lighting%2C%20group%20workout%2C%20energetic%20atmosphere%2C%20dark%20aesthetic%2C%20professional%20photography%2C%20Bangkok%20style&width=400&height=300&seq=4&orientation=landscape"
+              alt="Diverse Class Offerings"
+              class="w-full h-48 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">Diverse Class Offerings</h3>
+              <p class="text-gray-300">
+                From Muay Thai and HIIT to yoga and cycling, our wide range of
+                classes caters to all fitness levels and preferences.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card rounded-lg overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=luxurious%20spa%20and%20recovery%20area%20in%20modern%20gym%20with%20green%20accent%20lighting%2C%20relaxation%20space%2C%20massage%20tables%2C%20dark%20aesthetic%2C%20professional%20photography%2C%20premium%20wellness%20environment&width=400&height=300&seq=5&orientation=landscape"
+              alt="Recovery & Wellness"
+              class="w-full h-48 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">Recovery & Wellness</h3>
+              <p class="text-gray-300">
+                Complete your fitness journey with our recovery services
+                including massage therapy, sauna, and specialized stretching
+                areas.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-black bg-opacity-30 rounded-lg p-8">
+            <h3 class="text-2xl font-bold mb-6">Class Schedule</h3>
+            <div class="space-y-4">
+              <div
+                class="flex justify-between items-center pb-3 border-b border-gray-700"
+              >
+                <div>
+                  <h4 class="font-bold">Muay Thai Fundamentals</h4>
+                  <p class="text-sm text-gray-400">
+                    Mon, Wed, Fri • 6:00 - 7:30 AM
+                  </p>
+                </div>
+                <button
+                  class="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm hover:bg-opacity-30 transition-colors whitespace-nowrap"
+                >
+                  Book Now
+                </button>
+              </div>
+              <div
+                class="flex justify-between items-center pb-3 border-b border-gray-700"
+              >
+                <div>
+                  <h4 class="font-bold">HIIT Circuit</h4>
+                  <p class="text-sm text-gray-400">Tue, Thu • 7:00 - 8:00 AM</p>
+                </div>
+                <button
+                  class="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm hover:bg-opacity-30 transition-colors whitespace-nowrap"
+                >
+                  Book Now
+                </button>
+              </div>
+              <div
+                class="flex justify-between items-center pb-3 border-b border-gray-700"
+              >
+                <div>
+                  <h4 class="font-bold">Power Yoga</h4>
+                  <p class="text-sm text-gray-400">
+                    Mon, Wed, Fri • 6:00 - 7:00 PM
+                  </p>
+                </div>
+                <button
+                  class="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm hover:bg-opacity-30 transition-colors whitespace-nowrap"
+                >
+                  Book Now
+                </button>
+              </div>
+              <div
+                class="flex justify-between items-center pb-3 border-b border-gray-700"
+              >
+                <div>
+                  <h4 class="font-bold">Strength & Conditioning</h4>
+                  <p class="text-sm text-gray-400">Tue, Thu • 6:30 - 7:30 PM</p>
+                </div>
+                <button
+                  class="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm hover:bg-opacity-30 transition-colors whitespace-nowrap"
+                >
+                  Book Now
+                </button>
+              </div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <h4 class="font-bold">Weekend Warrior</h4>
+                  <p class="text-sm text-gray-400">Sat • 9:00 - 10:30 AM</p>
+                </div>
+                <button
+                  class="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm hover:bg-opacity-30 transition-colors whitespace-nowrap"
+                >
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="bg-black bg-opacity-30 rounded-lg p-8">
+            <h3 class="text-2xl font-bold mb-6">Our Locations</h3>
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0"
+                >
+                  <i class="ri-map-pin-line text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Sukhumvit Branch</h4>
+                  <p class="text-gray-300 mb-2">
+                    101 Sukhumvit Road, Khlong Toei, Bangkok 10110
+                  </p>
+                  <div class="flex gap-4">
+                    <span class="text-sm text-gray-400 flex items-center gap-1">
+                      <i class="ri-time-line"></i> 24/7
+                    </span>
+                    <span class="text-sm text-gray-400 flex items-center gap-1">
+                      <i class="ri-phone-line"></i> +66 2 123 4567
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0"
+                >
+                  <i class="ri-map-pin-line text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Silom Branch</h4>
+                  <p class="text-gray-300 mb-2">
+                    42 Silom Road, Bang Rak, Bangkok 10500
+                  </p>
+                  <div class="flex gap-4">
+                    <span class="text-sm text-gray-400 flex items-center gap-1">
+                      <i class="ri-time-line"></i> 24/7
+                    </span>
+                    <span class="text-sm text-gray-400 flex items-center gap-1">
+                      <i class="ri-phone-line"></i> +66 2 987 6543
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-4">
+                <button
+                  class="flex items-center gap-2 text-primary hover:underline"
+                >
+                  <span>View on map</span>
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Trainers Section -->
+    <section id="trainers" class="py-20 bg-black bg-opacity-30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Expert <span class="text-primary">Trainers</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Our certified trainers bring years of experience and specialized
+            knowledge to help you achieve your fitness goals.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Trainer 1 -->
+          <div
+            class="trainer-card rounded-lg overflow-hidden cursor-pointer"
+            data-trainer="trainer1"
+          >
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20male%20Thai%20fitness%20trainer%20with%20muscular%20build%2C%20athletic%20wear%2C%20confident%20pose%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=6&orientation=portrait"
+              alt="Somchai Jaidee"
+              class="w-full h-64 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-1">Somchai Jaidee</h3>
+              <p class="text-primary text-sm mb-3">Strength & Conditioning</p>
+              <div class="mb-4">
+                <div class="text-sm text-gray-400 mb-1">Experience</div>
+                <div class="experience-bar">
+                  <div class="experience-fill" style="width: 90%"></div>
+                </div>
+              </div>
+              <button
+                class="w-full border border-primary text-primary py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+              >
+                View Profile
+              </button>
+            </div>
+          </div>
+          <!-- Trainer 2 -->
+          <div
+            class="trainer-card rounded-lg overflow-hidden cursor-pointer"
+            data-trainer="trainer2"
+          >
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20female%20Thai%20fitness%20trainer%2C%20athletic%20build%2C%20confident%20pose%2C%20workout%20attire%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=7&orientation=portrait"
+              alt="Nisa Wongprasert"
+              class="w-full h-64 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-1">Nisa Wongprasert</h3>
+              <p class="text-primary text-sm mb-3">Yoga & Flexibility</p>
+              <div class="mb-4">
+                <div class="text-sm text-gray-400 mb-1">Experience</div>
+                <div class="experience-bar">
+                  <div class="experience-fill" style="width: 85%"></div>
+                </div>
+              </div>
+              <button
+                class="w-full border border-primary text-primary py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+              >
+                View Profile
+              </button>
+            </div>
+          </div>
+          <!-- Trainer 3 -->
+          <div
+            class="trainer-card rounded-lg overflow-hidden cursor-pointer"
+            data-trainer="trainer3"
+          >
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20male%20Thai%20Muay%20Thai%20trainer%2C%20athletic%20build%2C%20traditional%20Muay%20Thai%20stance%2C%20confident%20pose%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=8&orientation=portrait"
+              alt="Prakit Saengchan"
+              class="w-full h-64 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-1">Prakit Saengchan</h3>
+              <p class="text-primary text-sm mb-3">Muay Thai Specialist</p>
+              <div class="mb-4">
+                <div class="text-sm text-gray-400 mb-1">Experience</div>
+                <div class="experience-bar">
+                  <div class="experience-fill" style="width: 95%"></div>
+                </div>
+              </div>
+              <button
+                class="w-full border border-primary text-primary py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+              >
+                View Profile
+              </button>
+            </div>
+          </div>
+          <!-- Trainer 4 -->
+          <div
+            class="trainer-card rounded-lg overflow-hidden cursor-pointer"
+            data-trainer="trainer4"
+          >
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20female%20Thai%20fitness%20trainer%20specializing%20in%20HIIT%2C%20athletic%20build%2C%20energetic%20pose%2C%20workout%20attire%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=9&orientation=portrait"
+              alt="Malee Thongchai"
+              class="w-full h-64 object-cover object-top"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-1">Malee Thongchai</h3>
+              <p class="text-primary text-sm mb-3">HIIT & Cardio</p>
+              <div class="mb-4">
+                <div class="text-sm text-gray-400 mb-1">Experience</div>
+                <div class="experience-bar">
+                  <div class="experience-fill" style="width: 80%"></div>
+                </div>
+              </div>
+              <button
+                class="w-full border border-primary text-primary py-2 rounded-button hover:bg-primary hover:text-secondary transition-colors whitespace-nowrap"
+              >
+                View Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Transformation Section -->
+    <section id="transformations" class="py-20 bg-secondary">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Real <span class="text-primary">Transformations</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            See the incredible results our members have achieved with dedication
+            and our expert guidance.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-black bg-opacity-30 rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=before%20and%20after%20fitness%20transformation%20of%20Thai%20male%2C%20showing%20weight%20loss%20and%20muscle%20gain%2C%20split%20image%2C%20dark%20aesthetic%20with%20green%20accent%2C%20professional%20photography&width=400&height=300&seq=10&orientation=landscape"
+                alt="Transformation - Anuwat"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 left-4 bg-primary text-secondary px-3 py-1 rounded-full text-sm font-bold"
+              >
+                12 Weeks
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Anuwat, 32</h3>
+              <p class="text-gray-300 mb-4">
+                "Lost 15kg and gained significant muscle mass following the
+                Premium program with strength training focus."
+              </p>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-400">Starting weight: 92kg</span>
+                <span class="text-primary font-bold">Current: 77kg</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-black bg-opacity-30 rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=before%20and%20after%20fitness%20transformation%20of%20Thai%20female%20in%20proper%20athletic%20wear%20showing%20weight%20loss%20and%20muscle%20toning%2C%20wearing%20sports%20bra%20and%20leggings%2C%20modest%20fitness%20attire%2C%20split%20image%20comparison%2C%20dark%20aesthetic%20with%20green%20accent%2C%20professional%20photography&width=400&height=300&seq=11&orientation=landscape"
+                alt="Transformation - Supaporn"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 left-4 bg-primary text-secondary px-3 py-1 rounded-full text-sm font-bold"
+              >
+                16 Weeks
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Supaporn, 28</h3>
+              <p class="text-gray-300 mb-4">
+                "Transformed my body composition with HIIT and nutrition
+                guidance. Feel stronger and more confident than ever."
+              </p>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-400">Body fat: 32%</span>
+                <span class="text-primary font-bold">Current: 21%</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-black bg-opacity-30 rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=before%20and%20after%20fitness%20transformation%20of%20older%20Thai%20male%2C%20showing%20improved%20posture%20and%20strength%2C%20split%20image%2C%20dark%20aesthetic%20with%20green%20accent%2C%20professional%20photography&width=400&height=300&seq=12&orientation=landscape"
+                alt="Transformation - Pichit"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 left-4 bg-primary text-secondary px-3 py-1 rounded-full text-sm font-bold"
+              >
+                20 Weeks
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Pichit, 45</h3>
+              <p class="text-gray-300 mb-4">
+                "Overcame back pain and improved overall health. The trainers
+                created a program specifically for my needs."
+              </p>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-400">Strength increase: 65%</span>
+                <span class="text-primary font-bold">Pain reduction: 90%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <button
+            class="bg-primary text-secondary px-8 py-3 rounded-button text-lg font-bold hover:bg-opacity-80 transition-colors whitespace-nowrap"
+          >
+            Start Your Transformation
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Contact & CTA Section -->
+    <section id="contact" class="py-20 bg-black bg-opacity-30">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Ready to <span class="text-primary">Transform</span> Your Fitness
+              Journey?
+            </h2>
+            <p class="text-gray-300 mb-8">
+              Join FIT Fusion Bangkok today and experience the perfect blend of
+              modern facilities, expert guidance, and a supportive community to
+              help you achieve your fitness goals.
+            </p>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0 mt-1"
+                >
+                  <i class="ri-phone-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold mb-1">Call Us</h3>
+                  <p class="text-gray-300">+66 2 123 4567 (Sukhumvit)</p>
+                  <p class="text-gray-300">+66 2 987 6543 (Silom)</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0 mt-1"
+                >
+                  <i class="ri-mail-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold mb-1">Email Us</h3>
+                  <p class="text-gray-300">info@fitfusionbkk.com</p>
+                  <p class="text-gray-300">membership@fitfusionbkk.com</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0 mt-1"
+                >
+                  <i class="ri-time-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold mb-1">Opening Hours</h3>
+                  <p class="text-gray-300">24/7 for Premium & Elite members</p>
+                  <p class="text-gray-300">
+                    6:00 AM - 10:00 PM for Basic members
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-secondary p-8 rounded-lg">
+            <h3 class="text-2xl font-bold mb-6">Get a Free Trial</h3>
+            <form>
+              <div class="space-y-4 mb-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium mb-2"
+                    >Full Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                    placeholder="Your email"
+                  />
+                </div>
+                <div>
+                  <label for="phone" class="block text-sm font-medium mb-2"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                    placeholder="Your phone"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2"
+                    >Preferred Location</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="location" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded-full flex items-center justify-center"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded-full hidden radio-checked"
+                        ></div>
+                      </div>
+                      <span>Sukhumvit</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="location" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded-full flex items-center justify-center"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded-full hidden radio-checked"
+                        ></div>
+                      </div>
+                      <span>Silom</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2"
+                    >Fitness Goals (Select all that apply)</label
+                  >
+                  <div class="grid grid-cols-2 gap-3">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded flex items-center justify-center checkbox-container"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded hidden checkbox-checked"
+                        ></div>
+                      </div>
+                      <span>Weight Loss</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded flex items-center justify-center checkbox-container"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded hidden checkbox-checked"
+                        ></div>
+                      </div>
+                      <span>Muscle Gain</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded flex items-center justify-center checkbox-container"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded hidden checkbox-checked"
+                        ></div>
+                      </div>
+                      <span>Flexibility</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" class="hidden" />
+                      <div
+                        class="w-5 h-5 border-2 border-primary rounded flex items-center justify-center checkbox-container"
+                      >
+                        <div
+                          class="w-3 h-3 bg-primary rounded hidden checkbox-checked"
+                        ></div>
+                      </div>
+                      <span>Overall Health</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="hidden" />
+                    <div
+                      class="w-5 h-5 border-2 border-primary rounded flex items-center justify-center checkbox-container"
+                    >
+                      <div
+                        class="w-3 h-3 bg-primary rounded hidden checkbox-checked"
+                      ></div>
+                    </div>
+                    <span class="text-sm"
+                      >I agree to receive marketing communications from FIT
+                      Fusion Bangkok</span
+                    >
+                  </label>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-primary text-secondary py-3 rounded-button text-lg font-bold hover:bg-opacity-80 transition-colors pulse-animation whitespace-nowrap"
+              >
+                Claim Your Free Trial
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-secondary pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div class="flex items-center mb-6">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-2"
+              >
+                <i class="ri-fitness-line text-secondary text-xl"></i>
+              </div>
+              <h2 class="text-2xl font-bold text-white">
+                FIT <span class="text-primary">Fusion</span>
+              </h2>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Bangkok's premier fitness destination combining modern equipment,
+              expert trainers, and innovative workout programs.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-youtube-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#packages"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Membership</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#features"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#trainers"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Trainers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-6">Services</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Personal Training</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Group Classes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Nutrition Planning</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Muay Thai</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Recovery & Spa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Corporate Wellness</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-6">Newsletter</h3>
+            <p class="text-gray-400 mb-4">
+              Subscribe to our newsletter for fitness tips, exclusive offers,
+              and more.
+            </p>
+            <form class="mb-4">
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  class="w-full bg-black bg-opacity-50 border-none rounded-l p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                />
+                <button
+                  type="submit"
+                  class="bg-primary text-secondary px-4 rounded-r hover:bg-opacity-80 transition-colors whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-visa-fill text-gray-400 text-2xl"></i>
+              </div>
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-mastercard-fill text-gray-400 text-2xl"></i>
+              </div>
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-paypal-fill text-gray-400 text-2xl"></i>
+              </div>
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-alipay-fill text-gray-400 text-2xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+              &copy; 2025 FIT Fusion Bangkok. All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-gray-500 text-sm hover:text-primary transition-colors"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="text-gray-500 text-sm hover:text-primary transition-colors"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                class="text-gray-500 text-sm hover:text-primary transition-colors"
+                >Cookie Policy</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Trainer Modal -->
+    <div id="trainer-modal" class="modal">
+      <div class="modal-content p-8">
+        <div class="flex justify-between items-start mb-6">
+          <h3 class="text-2xl font-bold" id="modal-trainer-name">
+            Trainer Name
+          </h3>
+          <button id="close-modal" class="text-gray-400 hover:text-white">
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="md:w-1/3">
+            <img
+              id="modal-trainer-image"
+              src=""
+              alt="Trainer"
+              class="w-full h-auto rounded-lg"
+            />
+          </div>
+          <div class="md:w-2/3">
+            <p
+              class="text-primary text-lg font-bold mb-2"
+              id="modal-trainer-specialty"
+            >
+              Specialty
+            </p>
+            <div class="mb-4">
+              <div class="text-sm text-gray-400 mb-1">Experience</div>
+              <div class="experience-bar">
+                <div
+                  class="experience-fill"
+                  id="modal-trainer-experience"
+                  style="width: 90%"
+                ></div>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-6" id="modal-trainer-bio">
+              Trainer bio will appear here.
+            </p>
+            <div class="mb-6">
+              <h4 class="font-bold mb-3">Certifications</h4>
+              <ul class="space-y-2" id="modal-trainer-certifications">
+                <!-- Certifications will be populated here -->
+              </ul>
+            </div>
+            <div class="mb-6">
+              <h4 class="font-bold mb-3">Book a Session</h4>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label
+                      for="session-date"
+                      class="block text-sm font-medium mb-2"
+                      >Date</label
+                    >
+                    <input
+                      type="date"
+                      id="session-date"
+                      class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="session-time"
+                      class="block text-sm font-medium mb-2"
+                      >Time</label
+                    >
+                    <select
+                      id="session-time"
+                      class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none pr-8"
+                    >
+                      <option value="">Select a time</option>
+                      <option value="09:00">09:00 AM</option>
+                      <option value="10:00">10:00 AM</option>
+                      <option value="11:00">11:00 AM</option>
+                      <option value="14:00">02:00 PM</option>
+                      <option value="15:00">03:00 PM</option>
+                      <option value="16:00">04:00 PM</option>
+                      <option value="17:00">05:00 PM</option>
+                      <option value="18:00">06:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label
+                    for="session-notes"
+                    class="block text-sm font-medium mb-2"
+                    >Notes (Optional)</label
+                  >
+                  <textarea
+                    id="session-notes"
+                    rows="3"
+                    class="w-full bg-black bg-opacity-50 border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
+                    placeholder="Any specific goals or concerns?"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-secondary py-3 rounded-button font-bold hover:bg-opacity-80 transition-colors whitespace-nowrap"
+                >
+                  Book Session
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          // Toggle icon
+          const icon = mobileMenuButton.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          } else {
+            icon.classList.remove("ri-menu-line");
+            icon.classList.add("ri-close-line");
+          }
+        });
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            const icon = mobileMenuButton.querySelector("i");
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          });
+        });
+      });
+    </script>
+    <script id="counter-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
+        counters.forEach((counter) => {
+          const target = parseFloat(counter.getAttribute("data-target"));
+          const increment = target / speed;
+          let current = 0;
+          const updateCount = () => {
+            if (current < target) {
+              current += increment;
+              // Handle decimal places for values less than 10
+              if (target < 10) {
+                counter.innerText = current.toFixed(1);
+              } else {
+                counter.innerText = Math.ceil(current);
+              }
+              setTimeout(updateCount, 1);
+            } else {
+              counter.innerText = target;
+            }
+          };
+          updateCount();
+        });
+      });
+    </script>
+    <script id="form-controls-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            // Hide all checked indicators
+            document.querySelectorAll(".radio-checked").forEach((el) => {
+              el.classList.add("hidden");
+            });
+            // Show the checked indicator for the selected radio
+            if (this.checked) {
+              const checkedIndicator =
+                this.parentElement.querySelector(".radio-checked");
+              checkedIndicator.classList.remove("hidden");
+            }
+          });
+        });
+        // Checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const checkedIndicator =
+              this.parentElement.querySelector(".checkbox-checked");
+            if (this.checked) {
+              checkedIndicator.classList.remove("hidden");
+            } else {
+              checkedIndicator.classList.add("hidden");
+            }
+          });
+        });
+      });
+    </script>
+    <script id="trainer-modal-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const trainerCards = document.querySelectorAll(".trainer-card");
+        const modal = document.getElementById("trainer-modal");
+        const closeModal = document.getElementById("close-modal");
+        const modalTrainerName = document.getElementById("modal-trainer-name");
+        const modalTrainerSpecialty = document.getElementById(
+          "modal-trainer-specialty"
+        );
+        const modalTrainerExperience = document.getElementById(
+          "modal-trainer-experience"
+        );
+        const modalTrainerBio = document.getElementById("modal-trainer-bio");
+        const modalTrainerImage = document.getElementById(
+          "modal-trainer-image"
+        );
+        const modalTrainerCertifications = document.getElementById(
+          "modal-trainer-certifications"
+        );
+        // Trainer data
+        const trainers = {
+          trainer1: {
+            name: "Somchai Jaidee",
+            specialty: "Strength & Conditioning",
+            experience: "90%",
+            bio: "With over 10 years of experience in strength and conditioning, Somchai specializes in helping clients build muscle, increase strength, and improve overall athletic performance. His approach combines traditional weightlifting techniques with functional training methods to create balanced, effective programs.",
+            image:
+              "https://readdy.ai/api/search-image?query=professional%20male%20Thai%20fitness%20trainer%20with%20muscular%20build%2C%20athletic%20wear%2C%20confident%20pose%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=6&orientation=portrait",
+            certifications: [
+              "NSCA Certified Strength and Conditioning Specialist",
+              "NASM Performance Enhancement Specialist",
+              "TRX Suspension Training Specialist",
+              "First Aid and CPR Certified",
+            ],
+          },
+          trainer2: {
+            name: "Nisa Wongprasert",
+            specialty: "Yoga & Flexibility",
+            experience: "85%",
+            bio: "Nisa brings a holistic approach to fitness with her extensive background in yoga, Pilates, and mobility training. She specializes in helping clients improve flexibility, reduce stress, and enhance mind-body connection. Her sessions focus on proper alignment, breathing techniques, and mindful movement.",
+            image:
+              "https://readdy.ai/api/search-image?query=professional%20female%20Thai%20fitness%20trainer%2C%20athletic%20build%2C%20confident%20pose%2C%20workout%20attire%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=7&orientation=portrait",
+            certifications: [
+              "Yoga Alliance 500-Hour Certified Instructor",
+              "Pilates Method Alliance Certified",
+              "FMS (Functional Movement Systems) Specialist",
+              "Mindfulness and Meditation Coach",
+            ],
+          },
+          trainer3: {
+            name: "Prakit Saengchan",
+            specialty: "Muay Thai Specialist",
+            experience: "95%",
+            bio: "A former professional Muay Thai fighter with over 100 fights, Prakit brings authentic Thai boxing expertise to FIT Fusion. He specializes in teaching proper technique, conditioning, and the cultural aspects of Thailand's national sport. His classes are energetic, challenging, and suitable for all levels.",
+            image:
+              "https://readdy.ai/api/search-image?query=professional%20male%20Thai%20Muay%20Thai%20trainer%2C%20athletic%20build%2C%20traditional%20Muay%20Thai%20stance%2C%20confident%20pose%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=8&orientation=portrait",
+            certifications: [
+              "WBC Muay Thai Certified Trainer",
+              "Sports Authority of Thailand Certified Coach",
+              "Traditional Muay Thai Kru Certification",
+              "Advanced First Aid for Combat Sports",
+            ],
+          },
+          trainer4: {
+            name: "Malee Thongchai",
+            specialty: "HIIT & Cardio",
+            experience: "80%",
+            bio: "Malee is known for her high-energy, results-driven approach to fitness. Specializing in HIIT, cardio conditioning, and metabolic training, she helps clients maximize calorie burn, improve endurance, and achieve rapid results. Her sessions are challenging but adaptable to all fitness levels.",
+            image:
+              "https://readdy.ai/api/search-image?query=professional%20female%20Thai%20fitness%20trainer%20specializing%20in%20HIIT%2C%20athletic%20build%2C%20energetic%20pose%2C%20workout%20attire%2C%20dark%20aesthetic%20with%20green%20accent%20lighting%2C%20professional%20photography&width=300&height=400&seq=9&orientation=portrait",
+            certifications: [
+              "ACE Certified Personal Trainer",
+              "HIIT and Tabata Training Specialist",
+              "Precision Nutrition Level 1 Coach",
+              "Kettlebell Training Certified",
+            ],
+          },
+        };
+        // Open modal with trainer data
+        trainerCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const trainerId = this.getAttribute("data-trainer");
+            const trainer = trainers[trainerId];
+            modalTrainerName.textContent = trainer.name;
+            modalTrainerSpecialty.textContent = trainer.specialty;
+            modalTrainerExperience.style.width = trainer.experience;
+            modalTrainerBio.textContent = trainer.bio;
+            modalTrainerImage.src = trainer.image;
+            modalTrainerImage.alt = trainer.name;
+            // Clear and populate certifications
+            modalTrainerCertifications.innerHTML = "";
+            trainer.certifications.forEach((cert) => {
+              const li = document.createElement("li");
+              li.className = "flex items-center gap-2";
+              li.innerHTML = `
+<i class="ri-check-line text-primary"></i>
+<span>${cert}</span>
+`;
+              modalTrainerCertifications.appendChild(li);
+            });
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+          });
+        });
+        // Close modal
+        closeModal.addEventListener("click", function () {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto"; // Enable scrolling
+        });
+        // Close modal when clicking outside
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
