@@ -174,7 +174,7 @@ export default function Portfolio() {
       hero: {
         greeting: "สวัสดีครับ ผม เจษ",
         description: "นักศึกษา Computer Science ชั้นปีที่ 3 KMTIL ที่มีความหลงใหลในการพัฒนาและมีความรู้พื้นฐานด้าน Software, Data-Sci และ Cybersecurity",
-        viewProjects: "ดูผลงาน",
+        viewProjects: "College Projects",
         contactMe: "Contact Me",
       },
       about: {
@@ -341,29 +341,17 @@ export default function Portfolio() {
     },
   ]
 
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById("projects")
-    if (projectsSection) {
-      projectsSection.scrollIntoView({
+
+  const scrollToAnimation = (target:string) => {
+    const targetsection = document.getElementById(target)
+    if (targetsection) {
+      targetsection.scrollIntoView({
         behavior: "smooth",
         block: "start",
       })
     }
   }
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact")
-    if (contactSection) {
-      contactSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  }
-
-  const handleAnimationComplete = () => {
-    console.log('Projects title animation completed!');
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-orange-100">
@@ -407,15 +395,25 @@ export default function Portfolio() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-3 text-lg"
-                onClick={scrollToProjects}
+                onClick={() => scrollToAnimation("projects")}
               >
                 {t.hero.viewProjects}
               </Button>
+
               <Button
                 variant="outline"
                 size="lg"
                 className="border-orange-500 text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg"
-                onClick={scrollToContact}
+                onClick={() => scrollToAnimation("webdev")}
+              >
+                ดูผลงาน Webdev 🌐
+              </Button>
+
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-orange-500 text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg"
+                onClick={() => scrollToAnimation("contact")}
               >
                 {t.hero.contactMe}
               </Button>
@@ -469,7 +467,9 @@ export default function Portfolio() {
       
 
       {/* Web Development Showcase Section */}
-      <WebShowcaseSection language={language} />
+      <section id="webdev">
+        <WebShowcaseSection language={language}/>
+      </section>
 
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-white">
