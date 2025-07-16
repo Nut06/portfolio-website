@@ -92,18 +92,6 @@ export const websites: Website[] = [
     createdAt: "2024-04-01"
   },
   {
-    id: "6",
-    slug: "realestate",
-    title: "Real Estate Website",
-    description: "เว็บสำหรับธุรกิจอสังหาริมทรัพย์ สามารถโพสลงอสังหาริมทรัพย์ที่ต้องการจะขายหรือให้สำหรับลูกค้าติดต่อสอบถามข้อมูลพร้อมทั้งค้นหาอสังหาริมทรัพย์ที่ต้องการซื้อ",
-    technologies: [techstack.Figma, techstack.HTML, techstack.TailwindCSS, techstack.JS, techstack.SQL],
-    image: "/images/websites/thumbnail/realestate_thumbnail.png",
-    demoUrl: "/demos/real_estate/index.html",
-    category: category.WebApp,
-    featured: true,
-    createdAt: "2024-04-15"
-  },
-  {
     id: "7",
     slug: "clinic",
     title: "Dental Clinic Website",
@@ -113,6 +101,18 @@ export const websites: Website[] = [
     demoUrl: "/demos/task-manager/index.html",
     category: category.LandingPage,
     featured: false,
+    createdAt: "2024-04-15"
+  },
+  {
+    id: "6",
+    slug: "realestate",
+    title: "Real Estate Website",
+    description: "เว็บสำหรับธุรกิจอสังหาริมทรัพย์ สามารถโพสลงอสังหาริมทรัพย์ที่ต้องการจะขายหรือให้สำหรับลูกค้าติดต่อสอบถามข้อมูลพร้อมทั้งค้นหาอสังหาริมทรัพย์ที่ต้องการซื้อ",
+    technologies: [techstack.Figma, techstack.HTML, techstack.TailwindCSS, techstack.JS, techstack.SQL],
+    image: "/images/websites/thumbnail/realestate_thumbnail.png",
+    demoUrl: "/demos/real_estate/index.html",
+    category: category.WebApp,
+    featured: true,
     createdAt: "2024-04-15"
   }
 ]; 
