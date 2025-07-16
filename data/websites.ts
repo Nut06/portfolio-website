@@ -109,7 +109,7 @@ export const websites: Website[] = [
     title: "Real Estate Website",
     description: "เว็บสำหรับธุรกิจอสังหาริมทรัพย์ สามารถโพสลงอสังหาริมทรัพย์ที่ต้องการจะขายหรือให้สำหรับลูกค้าติดต่อสอบถามข้อมูลพร้อมทั้งค้นหาอสังหาริมทรัพย์ที่ต้องการซื้อ",
     technologies: [techstack.Figma, techstack.HTML, techstack.TailwindCSS, techstack.JS, techstack.SQL],
-    image: "/images/websites/thumbnail/realestate_thumbnail.png",
+    image: "/images/websites/thumbnail/Real_estate.png",
     demoUrl: "/demos/real_estate/index.html",
     category: category.WebApp,
     featured: true,
